@@ -2,11 +2,10 @@ import { categorySeo } from '@/data/categorySeo';
 
 interface Props {
   groupSlug: string;
-  groupName: string;
   cityIn?: string;
 }
 
-export default function CategorySeoBlock({ groupSlug, groupName, cityIn }: Props) {
+export default function CategorySeoBlock({ groupSlug, cityIn }: Props) {
   const seo = categorySeo[groupSlug];
   if (!seo) return null;
 

@@ -31,7 +31,7 @@ export default function CatalogSlugContent({ slug, cityPrefix = '', citySlug }: 
           deliveryTime={city.deliveryTime}
         />
         <div className="max-w-7xl mx-auto px-4 pb-10">
-          <CategorySeoBlock groupSlug={category.parentSlug} groupName={category.parentName} cityIn={city.in} />
+          <CategorySeoBlock groupSlug={category.parentSlug} cityIn={city.in} />
         </div>
         <FaqAccordion items={faq} />
       </div>
@@ -55,7 +55,7 @@ export default function CatalogSlugContent({ slug, cityPrefix = '', citySlug }: 
         deliveryTime={city.deliveryTime}
       />
       <div className="max-w-7xl mx-auto px-4 pb-10">
-        <CategorySeoBlock groupSlug={group.slug} groupName={group.name} cityIn={city.in} />
+        <CategorySeoBlock groupSlug={group.slug} cityIn={city.in} />
       </div>
       <FaqAccordion items={faq} />
     </div>

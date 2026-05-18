@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const isProduction = process.env.VERCEL_ENV === 'production' || !process.env.VERCEL_ENV;
   const siteUrl = 'https://rusmet.ru';
 
   // Preview/staging — закрыть всё от индексации

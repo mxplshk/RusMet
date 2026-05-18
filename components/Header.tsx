@@ -3,16 +3,26 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { categoryGroups } from '@/data/categories';
 import { useCart } from '@/components/cart/CartProvider';
+import { getCityBySlug } from '@/lib/cities';
+import CityDropdown from '@/components/CityDropdown';
+import { sendLead } from '@/lib/sendLead';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [priceModal, setPriceModal] = useState(false);
+  const [callModal, setCallModal] = useState(false);
+  const [modalSent, setModalSent] = useState(false);
+  const [messenger, setMessenger] = useState<'whatsapp' | 'telegram' | 'max'>('whatsapp');
   const [catalogOpen, setCatalogOpen] = useState(false);
   const catalogRef = useRef<HTMLDivElement>(null);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { itemCount } = useCart();
+  const pathname = usePathname();
+  const citySlug = pathname.split('/')[1];
+  const cityPrefix = getCityBySlug(citySlug) ? `/${citySlug}` : '';
 
   const handleCatalogEnter = () => {
     if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
@@ -30,9 +40,14 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    const handler = () => setModalOpen(true);
-    window.addEventListener('open-call-modal', handler);
-    return () => window.removeEventListener('open-call-modal', handler);
+    const callHandler = () => setCallModal(true);
+    const priceHandler = () => setPriceModal(true);
+    window.addEventListener('open-call-modal', callHandler);
+    window.addEventListener('open-price-modal', priceHandler);
+    return () => {
+      window.removeEventListener('open-call-modal', callHandler);
+      window.removeEventListener('open-price-modal', priceHandler);
+    };
   }, []);
 
   useEffect(() => {
@@ -54,18 +69,21 @@ export default function Header() {
         {/* Top bar */}
         <div className="bg-[#1a1a1a] text-white text-sm">
           <div className="max-w-7xl mx-auto px-4 py-2 flex flex-col sm:flex-row items-center justify-between gap-1">
-            <span className="text-gray-300 hidden sm:block">Понедельник–пятница с 9:00 до 18:00 · Суббота, воскресенье — выходной</span>
-            <span className="text-gray-300 sm:hidden">Пн–Пт: 9:00–18:00</span>
+            <div className="flex items-center gap-4">
+              <CityDropdown />
+              <span className="text-gray-300 hidden sm:block">Пн–Пт: 9:00–18:00 · Сб, Вс — выходной</span>
+              <span className="text-gray-300 sm:hidden">Пн–Пт: 9:00–18:00</span>
+            </div>
             <div className="flex items-center gap-4">
               <a href="mailto:info@rusmet.ru" className="text-gray-300 hover:text-white transition-colors">
                 info@rusmet.ru
               </a>
-              <a href="tel:+74951205252" className="text-white font-semibold hover:text-red-400 transition-colors">
-                +7 (495) 120-52-52
+              <a href="tel:+78121234567" className="text-white font-semibold hover:text-red-400 transition-colors">
+                +7 (812) 123-45-67
               </a>
               <div className="flex items-center gap-2">
                 <a
-                  href="https://wa.me/74951205252"
+                  href="https://wa.me/78121234567"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="WhatsApp"
@@ -96,7 +114,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4 relative">
           {/* Logo */}
           <div className="flex items-center gap-3 flex-shrink-0">
-            <Link href="/">
+            <Link href={cityPrefix ? `${cityPrefix}/` : '/'}>
               <Image
                 src="/images/logo/main_logo.png"
                 alt="РусМет"
@@ -122,7 +140,7 @@ export default function Header() {
               onMouseLeave={handleCatalogLeave}
             >
               <div className="flex items-center gap-0.5">
-                <Link href="/catalog" className="hover:text-[#CC0000] transition-colors py-2 pr-1">
+                <Link href={`${cityPrefix}/catalog`} className="hover:text-[#CC0000] transition-colors py-2 pr-1">
                   Каталог
                 </Link>
                 <button
@@ -152,7 +170,7 @@ export default function Header() {
                     {categoryGroups.map((group) => (
                       <div key={group.id}>
                         <Link
-                          href={`/catalog/${group.slug}`}
+                          href={`${cityPrefix}/catalog/${group.slug}`}
                           className="font-bold text-[#1a1a1a] mb-3 block hover:text-[#CC0000] transition-colors"
                           onClick={() => setCatalogOpen(false)}
                         >
@@ -162,7 +180,7 @@ export default function Header() {
                           {group.children.map((category) => (
                             <li key={category.id}>
                               <Link
-                                href={`/catalog/${category.slug}`}
+                                href={`${cityPrefix}/catalog/${category.slug}`}
                                 className="text-gray-600 hover:text-[#CC0000] transition-colors text-sm"
                                 onClick={() => setCatalogOpen(false)}
                               >
@@ -178,16 +196,17 @@ export default function Header() {
               </div>
             </div>
 
-            <Link href="/delivery" className="hover:text-[#CC0000] transition-colors">Доставка</Link>
-            <Link href="/about" className="hover:text-[#CC0000] transition-colors">О компании</Link>
-            <Link href="/payment" className="hover:text-[#CC0000] transition-colors">Способы оплаты</Link>
-            <Link href="/contacts" className="hover:text-[#CC0000] transition-colors">Контакты</Link>
+            <Link href={`${cityPrefix}/delivery`} className="hover:text-[#CC0000] transition-colors">Доставка</Link>
+            <Link href={`${cityPrefix}/about`} className="hover:text-[#CC0000] transition-colors">О компании</Link>
+            <Link href={`${cityPrefix}/payment`} className="hover:text-[#CC0000] transition-colors">Способы оплаты</Link>
+            <Link href={`${cityPrefix}/contacts`} className="hover:text-[#CC0000] transition-colors">Контакты</Link>
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-3">
             <Link
               href="/cart"
               aria-label={`Корзина: ${itemCount} товаров`}
+              suppressHydrationWarning
               className="relative w-10 h-10 rounded-lg border border-gray-200 text-[#1a1a1a] flex items-center justify-center hover:border-[#CC0000] hover:text-[#CC0000] transition-colors"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -206,8 +225,8 @@ export default function Header() {
             {/* CTA */}
             <div className="hidden sm:flex items-center gap-3">
               <button
-                onClick={() => setModalOpen(true)}
-                className="bg-[#CC0000] hover:bg-[#aa0000] text-white font-semibold text-sm px-4 py-2.5 rounded transition-colors whitespace-nowrap"
+                onClick={() => setCallModal(true)}
+                className="bg-[#CC0000] hover:bg-[#aa0000] text-white font-semibold text-sm px-4 py-2.5 rounded-lg transition-colors whitespace-nowrap"
               >
                 Заказать звонок
               </button>
@@ -233,17 +252,17 @@ export default function Header() {
         {/* Mobile menu */}
         {menuOpen && (
           <div className="lg:hidden border-t border-gray-100 bg-white px-4 py-4 flex flex-col gap-4">
-            <Link href="/catalog" className="text-sm font-medium hover:text-[#CC0000]" onClick={() => setMenuOpen(false)}>Каталог</Link>
-            <Link href="/delivery" className="text-sm font-medium hover:text-[#CC0000]" onClick={() => setMenuOpen(false)}>Доставка</Link>
-            <Link href="/about" className="text-sm font-medium hover:text-[#CC0000]" onClick={() => setMenuOpen(false)}>О компании</Link>
-            <Link href="/payment" className="text-sm font-medium hover:text-[#CC0000]" onClick={() => setMenuOpen(false)}>Способы оплаты</Link>
-            <Link href="/contacts" className="text-sm font-medium hover:text-[#CC0000]" onClick={() => setMenuOpen(false)}>Контакты</Link>
+            <Link href={`${cityPrefix}/catalog`} className="text-sm font-medium hover:text-[#CC0000]" onClick={() => setMenuOpen(false)}>Каталог</Link>
+            <Link href={`${cityPrefix}/delivery`} className="text-sm font-medium hover:text-[#CC0000]" onClick={() => setMenuOpen(false)}>Доставка</Link>
+            <Link href={`${cityPrefix}/about`} className="text-sm font-medium hover:text-[#CC0000]" onClick={() => setMenuOpen(false)}>О компании</Link>
+            <Link href={`${cityPrefix}/payment`} className="text-sm font-medium hover:text-[#CC0000]" onClick={() => setMenuOpen(false)}>Способы оплаты</Link>
+            <Link href={`${cityPrefix}/contacts`} className="text-sm font-medium hover:text-[#CC0000]" onClick={() => setMenuOpen(false)}>Контакты</Link>
             <button
               onClick={() => {
-                setModalOpen(true);
+                setCallModal(true);
                 setMenuOpen(false);
               }}
-              className="bg-[#CC0000] text-white font-semibold text-sm px-4 py-2.5 rounded text-center"
+              className="bg-[#CC0000] text-white font-semibold text-sm px-4 py-2.5 rounded-lg text-center"
             >
               Заказать звонок
             </button>
@@ -251,33 +270,98 @@ export default function Header() {
         )}
       </header>
 
-      {/* Call modal */}
-      {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4" onClick={() => setModalOpen(false)}>
+      {/* ── Popup: Получить прайс-лист ── */}
+      {priceModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4" onClick={() => { setPriceModal(false); setModalSent(false); }}>
           <div className="bg-white rounded-2xl p-8 w-full max-w-md shadow-2xl relative" onClick={(e) => e.stopPropagation()}>
-            <h2 className="text-2xl font-bold text-[#1a1a1a] mb-2">Заказать звонок</h2>
-            <p className="text-gray-500 text-sm mb-6">Перезвоним в течение 15 минут</p>
-            <form className="flex flex-col gap-4" onSubmit={(e) => { e.preventDefault(); setModalOpen(false); }}>
-              <input
-                type="text"
-                placeholder="Ваше имя"
-                className="border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#CC0000]"
-                required
-              />
-              <input
-                type="tel"
-                placeholder="+7 (___) ___-__-__"
-                className="border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#CC0000]"
-                required
-              />
-              <button type="submit" className="bg-[#CC0000] hover:bg-[#aa0000] text-white font-semibold py-3 rounded-lg transition-colors">
-                Перезвоните мне
-              </button>
-            </form>
-            <button className="absolute top-4 right-4 text-gray-400 hover:text-gray-600" onClick={() => setModalOpen(false)}>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+            {modalSent ? (
+              <div className="text-center py-4">
+                <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                </div>
+                <div className="text-xl font-bold text-[#1a1a1a] mb-1">Заявка отправлена!</div>
+                <p className="text-gray-500 text-sm">Свяжемся с&nbsp;вами в&nbsp;течение 15&nbsp;минут</p>
+              </div>
+            ) : (
+              <>
+                <h2 className="text-2xl font-bold text-[#1a1a1a] mb-1">Получить прайс-лист</h2>
+                <p className="text-gray-500 text-sm mb-6">Свяжемся с&nbsp;вами в&nbsp;течение 15&nbsp;минут</p>
+                <form className="flex flex-col gap-4" onSubmit={(e) => {
+                  e.preventDefault();
+                  const f = e.target as HTMLFormElement;
+                  sendLead({
+                    name: (f.elements.namedItem('price-name') as HTMLInputElement)?.value ?? '',
+                    phone: (f.elements.namedItem('price-phone') as HTMLInputElement)?.value ?? '',
+                    type: 'Получить прайс-лист',
+                    comment: `Способ связи: ${messenger}`,
+                  });
+                  setModalSent(true);
+                }}>
+                  <input type="text" name="price-name" placeholder="Ваше имя" required className="border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#CC0000]" />
+                  <input type="tel" name="price-phone" placeholder="+7 (___) ___-__-__" required className="border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#CC0000]" />
+                  <div>
+                    <p className="text-xs text-gray-500 mb-2">Удобный способ связи</p>
+                    <div className="flex gap-2">
+                      {([
+                        { id: 'whatsapp' as const, label: 'WhatsApp', color: 'bg-[#25D366]' },
+                        { id: 'telegram' as const, label: 'Telegram', color: 'bg-[#229ED9]' },
+                        { id: 'max' as const, label: 'Max', color: 'bg-[#1f2937]' },
+                      ]).map((m) => (
+                        <button key={m.id} type="button" onClick={() => setMessenger(m.id)}
+                          className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all ${messenger === m.id ? `${m.color} text-white shadow-md` : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
+                        >{m.label}</button>
+                      ))}
+                    </div>
+                  </div>
+                  <button type="submit" className="bg-[#CC0000] hover:bg-[#aa0000] text-white font-bold py-3.5 rounded-xl transition-colors">
+                    Получить прайс-лист
+                  </button>
+                </form>
+              </>
+            )}
+            <button className="absolute top-4 right-4 text-gray-400 hover:text-gray-600" onClick={() => { setPriceModal(false); setModalSent(false); }} aria-label="Закрыть">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ── Popup: Заказать звонок ── */}
+      {callModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4" onClick={() => { setCallModal(false); setModalSent(false); }}>
+          <div className="bg-white rounded-2xl p-8 w-full max-w-md shadow-2xl relative" onClick={(e) => e.stopPropagation()}>
+            {modalSent ? (
+              <div className="text-center py-4">
+                <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                </div>
+                <div className="text-xl font-bold text-[#1a1a1a] mb-1">Заявка отправлена!</div>
+                <p className="text-gray-500 text-sm">Перезвоним в&nbsp;течение 15&nbsp;минут</p>
+              </div>
+            ) : (
+              <>
+                <h2 className="text-2xl font-bold text-[#1a1a1a] mb-1">Заказать звонок</h2>
+                <p className="text-gray-500 text-sm mb-6">Перезвоним в&nbsp;течение 15&nbsp;минут</p>
+                <form className="flex flex-col gap-4" onSubmit={(e) => {
+                  e.preventDefault();
+                  const f = e.target as HTMLFormElement;
+                  sendLead({
+                    name: (f.elements.namedItem('call-name') as HTMLInputElement)?.value ?? '',
+                    phone: (f.elements.namedItem('call-phone') as HTMLInputElement)?.value ?? '',
+                    type: 'Заказать звонок',
+                  });
+                  setModalSent(true);
+                }}>
+                  <input type="text" name="call-name" placeholder="Ваше имя" required className="border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#CC0000]" />
+                  <input type="tel" name="call-phone" placeholder="+7 (___) ___-__-__" required className="border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#CC0000]" />
+                  <button type="submit" className="bg-[#CC0000] hover:bg-[#aa0000] text-white font-bold py-3.5 rounded-xl transition-colors">
+                    Заказать звонок
+                  </button>
+                </form>
+              </>
+            )}
+            <button className="absolute top-4 right-4 text-gray-400 hover:text-gray-600" onClick={() => { setCallModal(false); setModalSent(false); }} aria-label="Закрыть">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
           </div>
         </div>

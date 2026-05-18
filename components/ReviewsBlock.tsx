@@ -1,54 +1,21 @@
-const reviews = [
-  {
-    id: 1,
-    name: 'Александр Громов',
-    role: 'Прораб, ООО «СтройПроект»',
-    text: 'Работаем с РусМет уже третий год. Всегда есть нужный диаметр арматуры в наличии, цены стабильные, доставка — в срок. Для нас это критично на объектах.',
-    date: '15 марта 2025',
-  },
-  {
-    id: 2,
-    name: 'Елена Васильева',
-    role: 'Частный застройщик',
-    text: 'Заказывала профнастил для забора. Помогли подобрать нужную марку, привезли на следующий день. Всё упаковано, без царапин. Очень довольна.',
-    date: '2 февраля 2025',
-  },
-  {
-    id: 3,
-    name: 'Дмитрий Орлов',
-    role: 'ИП, металлообработка',
-    text: 'Регулярно беру листовой прокат. Качество стабильное, документы все выдают вовремя. Для оптовиков действуют хорошие условия — рекомендую.',
-    date: '18 января 2025',
-  },
-  {
-    id: 4,
-    name: 'Сергей Нечаев',
-    role: 'Руководитель строительной бригады',
-    text: 'Брали трубы профильные под металлоконструкции. Широкий ассортимент, хорошая цена за тонну. Самовывоз — удобно, загрузились быстро.',
-    date: '5 декабря 2024',
-  },
-  {
-    id: 5,
-    name: 'Ирина Соколова',
-    role: 'Менеджер по закупкам',
-    text: 'Компания надёжная. Выставляют счёт быстро, документы полные. Уже несколько поставок швеллера прошло без единой проблемы.',
-    date: '22 ноября 2024',
-  },
-  {
-    id: 6,
-    name: 'Максим Белов',
-    role: 'Частный заказчик',
-    text: 'Купил арматуру для фундамента дачи. Посоветовали нужный диаметр, помогли с расчётом. Привезли на следующий день прямо на участок. Спасибо!',
-    date: '10 октября 2024',
-  },
-];
+interface Review {
+  id: number;
+  name: string;
+  role: string;
+  text: string;
+  date: string;
+}
 
-export default function ReviewsBlock() {
+interface Props {
+  reviews: Review[];
+}
+
+export default function ReviewsBlock({ reviews }: Props) {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-20 sm:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4">
         <div className="mb-10">
-          <h2 className="text-3xl font-black text-[#1a1a1a]">Отзывы клиентов</h2>
+          <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a]">Отзывы клиентов</h2>
           <p className="text-gray-500 mt-1">Что говорят наши покупатели</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -61,10 +28,10 @@ export default function ReviewsBlock() {
                   </svg>
                 ))}
               </div>
-              <p className="text-sm text-gray-700 leading-relaxed flex-1">«{r.text}»</p>
+              <p className="text-sm text-gray-700 leading-relaxed flex-1">&laquo;{r.text}&raquo;</p>
               <div>
                 <p className="font-semibold text-[#1a1a1a] text-sm">{r.name}</p>
-                <p className="text-xs text-gray-400">{r.role} · {r.date}</p>
+                <p className="text-xs text-gray-400">{r.role} &middot; {r.date}</p>
               </div>
             </article>
           ))}

@@ -2,13 +2,13 @@ import DeliveryCalculator from '@/components/DeliveryCalculator';
 
 export const metadata = {
   title: 'Доставка — РусМет',
-  description: 'Условия доставки металлопроката по Москве, Московской области и регионам России.',
+  description: 'Условия доставки металлопроката по Санкт-Петербургу, Ленинградской области и регионам России.',
 };
 
 const zones = [
-  { zone: 'Москва в пределах МКАД', term: '1 рабочий день', details: 'Доставка собственным транспортом.' },
-  { zone: 'Московская область (до 30 км)', term: '1–2 рабочих дня', details: 'Стоимость рассчитывается по километражу.' },
-  { zone: 'Московская область (30–100 км)', term: '2 рабочих дня', details: 'Согласование времени разгрузки заранее.' },
+  { zone: 'Санкт-Петербург (в пределах КАД)', term: '1 рабочий день', details: 'Доставка собственным транспортом.' },
+  { zone: 'Ленинградская область (до 50 км от КАД)', term: '1–2 рабочих дня', details: 'Стоимость рассчитывается по километражу.' },
+  { zone: 'Ленинградская область (50–150 км)', term: '2 рабочих дня', details: 'Согласование времени разгрузки заранее.' },
   { zone: 'Регионы РФ', term: 'от 2 дней', details: 'Отправка через проверенные транспортные компании.' },
 ];
 
@@ -19,13 +19,13 @@ export default function DeliveryPage() {
         <div className="mb-10">
           <h1 className="text-3xl sm:text-4xl font-black text-[#1a1a1a] mb-3">Доставка</h1>
           <p className="text-gray-600 max-w-3xl leading-relaxed">
-            Организуем быструю и безопасную доставку металлопроката по Москве, области и в регионы России.
+            Организуем быструю и безопасную доставку металлопроката по Санкт-Петербургу, Ленинградской области и в регионы России.
             Отгружаем со склада ежедневно, помогаем с подбором транспорта под объём и тип продукции.
           </p>
         </div>
 
         <section className="bg-white rounded-2xl p-6 sm:p-8 mb-8 shadow-sm border border-gray-100">
-          <h2 className="text-2xl font-bold text-[#1a1a1a] mb-5">Условия доставки</h2>
+          <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a] mb-5">Условия доставки</h2>
           <ul className="space-y-3 text-gray-700">
             <li>• Минимальный объём заказа для доставки — от 1 позиции.</li>
             <li>• Возможны отгрузки день в день при подтверждении заказа до 12:00.</li>
@@ -35,7 +35,7 @@ export default function DeliveryPage() {
         </section>
 
         <section className="bg-white rounded-2xl p-6 sm:p-8 mb-8 shadow-sm border border-gray-100">
-          <h2 className="text-2xl font-bold text-[#1a1a1a] mb-5">Зоны и сроки</h2>
+          <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a] mb-5">Зоны и сроки</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {zones.map((item) => (
               <article key={item.zone} className="border border-gray-100 rounded-xl p-5 bg-[#fafafa]">
@@ -51,14 +51,14 @@ export default function DeliveryPage() {
         <DeliveryCalculator />
 
         <section className="bg-[#1a1a1a] text-white rounded-2xl p-6 sm:p-8">
-          <h2 className="text-2xl font-bold mb-3">Самовывоз</h2>
+          <h2 className="text-2xl sm:text-3xl font-black mb-3">Самовывоз</h2>
           <p className="text-gray-300 leading-relaxed mb-3">
-            Самовывоз доступен бесплатно со склада в Москве в рабочие дни с 9:00 до 18:00.
+            Самовывоз доступен бесплатно со склада в Санкт-Петербурге в рабочие дни с 9:00 до 18:00.
             Подготовим документы и заказ к вашему приезду.
           </p>
-          <p className="text-sm text-gray-400 mb-5">Адрес склада: г. Москва, ул. Промышленная, д. 15, стр. 2</p>
+          <p className="text-sm text-gray-400 mb-5">Адрес склада: г. Санкт-Петербург, ул. Складская, д. 10, лит. А</p>
           <a
-            href="https://yandex.ru/maps/?text=Москва+Промышленная+15"
+            href="https://yandex.ru/maps/?text=Санкт-Петербург+Складская+10"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition-colors"

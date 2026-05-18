@@ -10,10 +10,14 @@ import type { Product } from '@/data/products';
 import { useCart } from '@/components/cart/CartProvider';
 
 interface Props {
-  category?: Category;      // режим подкатегории
-  group?: CategoryGroup;    // режим группы (все товары + фильтр по подкатегории)
+  category?: Category;
+  group?: CategoryGroup;
   categoryGroups: CategoryGroup[];
-  products: Product[];      // все товары для этого вида (уже отфильтрованы на сервере)
+  products: Product[];
+  cityPrefix?: string;
+  cityIn?: string;
+  cityBy?: string;
+  deliveryTime?: string;
 }
 
 function formatPrice(price: number) {
@@ -23,7 +27,7 @@ function formatPrice(price: number) {
   });
 }
 
-export default function CategoryCatalogView({ category, group, categoryGroups, products }: Props) {
+export default function CategoryCatalogView({ category, group, categoryGroups, products, cityPrefix = '', cityIn = 'в\u00a0Санкт-Петербурге', cityBy = 'по\u00a0Санкт-Петербургу', deliveryTime = 'в\u00a0день заказа' }: Props) {
   const { addToCart } = useCart();
 
   // Режим группы — дополнительный фильтр по подкатегории (client-side)
@@ -138,13 +142,13 @@ export default function CategoryCatalogView({ category, group, categoryGroups, p
     <div className="max-w-7xl mx-auto px-4 py-10">
       {/* Breadcrumbs */}
       <nav className="text-sm text-gray-400 mb-6 flex items-center gap-2 flex-wrap">
-        <Link href="/" className="hover:text-[#CC0000] transition-colors">Главная</Link>
+        <Link href={`${cityPrefix}/`} className="hover:text-[#CC0000] transition-colors">Главная</Link>
         <span>/</span>
-        <Link href="/catalog" className="hover:text-[#CC0000] transition-colors">Каталог</Link>
+        <Link href={`${cityPrefix}/catalog`} className="hover:text-[#CC0000] transition-colors">Каталог</Link>
         {category && (
           <>
             <span>/</span>
-            <Link href={`/catalog/${category.parentSlug}`} className="hover:text-[#CC0000] transition-colors">
+            <Link href={`${cityPrefix}/catalog/${category.parentSlug}`} className="hover:text-[#CC0000] transition-colors">
               {category.parentName}
             </Link>
             <span>/</span>
@@ -241,7 +245,7 @@ export default function CategoryCatalogView({ category, group, categoryGroups, p
                           return (
                             <li key={child.id}>
                               <Link
-                                href={`/catalog/${child.slug}`}
+                                href={`${cityPrefix}/catalog/${child.slug}`}
                                 className={`block text-xs py-1.5 px-2 rounded transition-colors ${
                                   isActiveSub ? 'text-[#CC0000] font-semibold' : 'text-[#AAAAAA] hover:text-[#CC0000]'
                                 }`}
@@ -278,11 +282,11 @@ export default function CategoryCatalogView({ category, group, categoryGroups, p
               )}
               <div className="flex-1">
                 <p className="text-sm text-[#CC0000] font-semibold mb-1">{pageSubtitle}</p>
-                <h1 className="text-2xl font-black text-[#1a1a1a] mb-2">{pageTitle}</h1>
+                <h1 className="text-xl sm:text-2xl lg:text-3xl font-black text-[#1a1a1a] mb-2">{pageTitle}</h1>
                 <p className="text-gray-500 text-sm leading-relaxed">
                   {group
-                    ? `${group.name} — широкий ассортимент металлопроката в наличии на складе в Москве. Актуальные цены, быстрая отгрузка. Менеджеры помогут подобрать нужную позицию.`
-                    : `${category!.name} — востребованная позиция из раздела «${category!.parentName}» для строительных и производственных задач.`
+                    ? `${group.name} ${cityIn} — широкий ассортимент в\u00a0наличии на\u00a0складе. Доставка ${cityBy} — ${deliveryTime}. Менеджеры помогут подобрать нужную позицию.`
+                    : `${category!.name} ${cityIn} — востребованная позиция из\u00a0раздела «${category!.parentName}». Доставка ${cityBy} — ${deliveryTime}.`
                   }
                 </p>
                 {group && (
@@ -415,7 +419,7 @@ export default function CategoryCatalogView({ category, group, categoryGroups, p
                   {filteredProducts.map((product, index) => (
                     <tr key={product.id} className={`border-t border-gray-100 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
                       <td className="px-4 py-3 font-medium text-[#1a1a1a]">
-                        <Link href={`/product/${product.slug}`} className="hover:text-[#CC0000] transition-colors">
+                        <Link href={`${cityPrefix}/product/${product.slug}`} className="hover:text-[#CC0000] transition-colors">
                           {product.name}
                         </Link>
                       </td>

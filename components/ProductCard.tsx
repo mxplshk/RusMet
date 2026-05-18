@@ -5,9 +5,10 @@ interface Props {
   product: Product;
   oldPrice?: number;
   discount?: boolean;
+  cityPrefix?: string;
 }
 
-export default function ProductCard({ product, oldPrice, discount }: Props) {
+export default function ProductCard({ product, oldPrice, discount, cityPrefix = '' }: Props) {
   const fmt = (n: number) =>
     n.toLocaleString('ru-RU', {
       minimumFractionDigits: Number.isInteger(n) ? 0 : 2,
@@ -17,7 +18,7 @@ export default function ProductCard({ product, oldPrice, discount }: Props) {
   return (
     <div className="bg-white rounded-xl border border-gray-100 hover:shadow-lg transition-shadow group overflow-hidden flex flex-col">
       {/* Image placeholder */}
-      <Link href={`/product/${product.slug}`} className="block bg-[#f5f5f5] aspect-[4/3] relative overflow-hidden">
+      <Link href={`${cityPrefix}/product/${product.slug}`} className="block bg-[#f5f5f5] aspect-[4/3] relative overflow-hidden">
         {discount && (
           <span className="absolute top-2 left-2 bg-[#CC0000] text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10">
             Акция
@@ -32,7 +33,7 @@ export default function ProductCard({ product, oldPrice, discount }: Props) {
 
       {/* Info */}
       <div className="p-4 flex flex-col flex-1">
-        <Link href={`/product/${product.slug}`}>
+        <Link href={`${cityPrefix}/product/${product.slug}`}>
           <h3 className="font-semibold text-[#1a1a1a] text-sm leading-snug mb-2 group-hover:text-[#CC0000] transition-colors line-clamp-2">
             {product.name}
           </h3>

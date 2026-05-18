@@ -33,14 +33,14 @@ export default function PaymentPage() {
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           {paymentMethods.map((method) => (
             <article key={method.title} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-              <h2 className="text-lg font-bold text-[#1a1a1a] mb-2">{method.title}</h2>
+              <h2 className="text-base font-bold text-[#1a1a1a] mb-2">{method.title}</h2>
               <p className="text-sm text-gray-600 leading-relaxed">{method.details}</p>
             </article>
           ))}
         </section>
 
         <section className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-sm">
-          <h2 className="text-2xl font-bold text-[#1a1a1a] mb-4">Важная информация</h2>
+          <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a] mb-4">Важная информация</h2>
           <ul className="space-y-3 text-gray-700">
             <li>• Счёт формируется менеджером после подтверждения наличия и объёма заказа.</li>
             <li>• Резерв товара на складе действует до окончания срока, указанного в счёте.</li>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useCart } from '@/components/cart/CartProvider';
+import { sendLead } from '@/lib/sendLead';
 
 interface Props {
   productId: number;
@@ -26,6 +27,13 @@ export default function OrderControls({ productId, slug, name, price, unit, size
 
   const handleQuickOrder = (e: React.FormEvent) => {
     e.preventDefault();
+    sendLead({
+      name: orderName,
+      phone,
+      type: 'Быстрый заказ',
+      product: name,
+      quantity: `${qty} ${unit}`,
+    });
     setQuickSent(true);
   };
 

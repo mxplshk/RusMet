@@ -6,21 +6,22 @@ import { getCategoryImage } from '@/data/categoryImages';
 interface Props {
   category: Category;
   productCount?: number;
+  cityPrefix?: string;
 }
 
-export default function CategoryCard({ category, productCount }: Props) {
+export default function CategoryCard({ category, productCount, cityPrefix = '' }: Props) {
   const imageSrc = getCategoryImage(category.slug, category.parentSlug);
 
   return (
     <Link
-      href={`/catalog/${category.slug}`}
+      href={`${cityPrefix}/catalog/${category.slug}`}
       className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:shadow-md hover:border-[#CC0000]/30 transition-all group flex flex-col"
     >
       <div className="w-full h-44 bg-white flex items-center justify-center overflow-hidden transition-colors">
         {imageSrc ? (
           <Image
             src={imageSrc}
-            alt={`${category.name} — металлопрокат Москва`}
+            alt={`${category.name} — металлопрокат Санкт-Петербург`}
             width={200}
             height={144}
             className="w-full h-full object-contain p-3"

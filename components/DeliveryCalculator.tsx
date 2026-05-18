@@ -28,8 +28,8 @@ export default function DeliveryCalculator() {
 
   return (
     <section className="bg-white rounded-2xl p-6 sm:p-8 mb-8 shadow-sm border border-gray-100">
-      <h2 className="text-2xl font-bold text-[#1a1a1a] mb-1">Калькулятор доставки</h2>
-      <p className="text-sm text-gray-500 mb-6">Примерный расчёт стоимости. Точная цена согласуется с менеджером.</p>
+      <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a] mb-1">Калькулятор доставки</h2>
+      <p className="text-sm text-gray-500 mb-6">Примерный расчёт стоимости. Точная цена согласуется с&nbsp;менеджером.</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
         <div>
@@ -73,7 +73,7 @@ export default function DeliveryCalculator() {
             <p className="text-xs text-gray-400 mt-1">Расчёт в оба конца · без НДС</p>
           </div>
           <a
-            href="tel:+74951205252"
+            href="tel:+78121234567"
             className="bg-[#CC0000] hover:bg-[#aa0000] text-white font-semibold text-sm px-5 py-3 rounded-xl transition-colors whitespace-nowrap"
           >
             Уточнить цену

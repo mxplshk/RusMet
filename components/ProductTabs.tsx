@@ -4,13 +4,15 @@ import { useState } from 'react';
 
 interface Props {
   productName: string;
+  cityIn?: string;
 }
 
 const TABS = ['Описание', 'Применение', 'Сертификаты'] as const;
 type Tab = (typeof TABS)[number];
 
-function getDescription(name: string): string {
-  return `${name} — качественный металлопрокат, производимый в соответствии с требованиями ГОСТ. Изделие изготовлено из стали с высокими прочностными характеристиками, что обеспечивает надёжность и долговечность при эксплуатации. Продукция проходит входной и выходной контроль качества на всех этапах производства. Поставляется со склада в Москве с возможностью оперативной доставки по всей России.`;
+function getDescription(name: string, cityIn?: string): string {
+  const loc = cityIn ?? 'в\u00a0Санкт-Петербурге';
+  return `${name}\u00a0— качественный металлопрокат, производимый в\u00a0соответствии с\u00a0требованиями ГОСТ. Изделие изготовлено из\u00a0стали с\u00a0высокими прочностными характеристиками. Продукция проходит входной и\u00a0выходной контроль качества. Поставляется ${loc} со\u00a0склада в\u00a0Санкт-Петербурге с\u00a0возможностью оперативной доставки.`;
 }
 
 function getApplications(name: string): string[] {
@@ -51,10 +53,10 @@ function getApplications(name: string): string[] {
   ];
 }
 
-export default function ProductTabs({ productName }: Props) {
+export default function ProductTabs({ productName, cityIn }: Props) {
   const [active, setActive] = useState<Tab>('Описание');
 
-  const description = getDescription(productName);
+  const description = getDescription(productName, cityIn);
   const applications = getApplications(productName);
 
   return (

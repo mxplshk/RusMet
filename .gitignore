@@ -1,4 +1,9 @@
+.env.local
 node_modules
 .next
-.env
+dist
+tsconfig.tsbuildinfo
+logs
+data
+screenshots
 .DS_Store

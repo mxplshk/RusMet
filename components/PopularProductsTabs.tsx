@@ -18,7 +18,7 @@ export default function PopularProductsTabs({ popularProducts, discountProducts 
   const items = activeTab === 'popular' ? popularProducts : discountProducts;
 
   return (
-    <section className="py-24">
+    <section className="py-20 sm:py-24">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div>

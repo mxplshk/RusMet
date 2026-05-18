@@ -42,10 +42,17 @@ export default function ProductPageContent({ slug, cityPrefix = '', cityName, ci
     name: product.name,
     description,
     sku: product.slug,
+    brand: {
+      '@type': 'Brand',
+      name: 'Русмет',
+    },
+    category: category?.parentName ?? 'Металлопрокат',
     offers: {
       '@type': 'Offer',
+      url: pageUrl,
       priceCurrency: 'RUB',
       price: product.price,
+      priceValidUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
       itemCondition: 'https://schema.org/NewCondition',
       availability: 'https://schema.org/InStock',
       seller: { '@type': 'Organization', name: 'Русмет' },

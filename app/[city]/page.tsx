@@ -9,7 +9,7 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const city = getCityBySlug(params.city)!;
   return {
-    title: `Металлопрокат ${city.in} — купить металл с доставкой | Цена`,
+    title: `Металлопрокат ${city.in} — купить с доставкой | Русмет`,
     description: `Купить металлопрокат ${city.in}. Доставка ${city.by} и Ленинградской области. Всегда в наличии. Опт и розница.`,
     openGraph: {
       title: `Металлопрокат ${city.in} — Русмет`,

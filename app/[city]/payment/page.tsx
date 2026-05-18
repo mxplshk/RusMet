@@ -8,9 +8,13 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const city = getCityBySlug(params.city)!;
   return {
-    title: `Способы оплаты — РусМет ${city.in}`,
-    description: `Актуальные способы оплаты заказов металлопроката РусМет ${city.in}.`,
+    title: `Способы оплаты металлопроката ${city.in} — Русмет`,
+    description: `Актуальные способы оплаты заказов металлопроката РусМет ${city.in}. Безнал, договор, наличные.`,
     alternates: { canonical: `https://rusmet.ru/${params.city}/payment` },
+    openGraph: {
+      title: `Способы оплаты — РусМет ${city.name}`,
+      description: `Удобные способы оплаты металлопроката ${city.in}.`,
+    },
   };
 }
 

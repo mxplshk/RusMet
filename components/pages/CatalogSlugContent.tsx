@@ -6,10 +6,25 @@ import CategorySeoBlock from '@/components/CategorySeoBlock';
 import FaqAccordion from '@/components/FaqAccordion';
 import { defaultCity, getCityBySlug, getCategoryFaq, type City } from '@/lib/cities';
 
+const BASE_URL = 'https://rusmet.ru';
+
 interface Props {
   slug: string;
   cityPrefix?: string;
   citySlug?: string;
+}
+
+function buildBreadcrumbSchema(items: { name: string; url: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
 }
 
 export default function CatalogSlugContent({ slug, cityPrefix = '', citySlug }: Props) {
@@ -19,8 +34,15 @@ export default function CatalogSlugContent({ slug, cityPrefix = '', citySlug }: 
   if (category) {
     const categoryProducts = getProductsByCategory(slug);
     const faq = getCategoryFaq(category.name, city);
+    const breadcrumb = buildBreadcrumbSchema([
+      { name: 'Главная', url: `${BASE_URL}${cityPrefix}/` },
+      { name: 'Каталог', url: `${BASE_URL}${cityPrefix}/catalog` },
+      { name: category.parentName, url: `${BASE_URL}${cityPrefix}/catalog/${category.parentSlug}` },
+      { name: category.name, url: `${BASE_URL}${cityPrefix}/catalog/${category.slug}` },
+    ]);
     return (
       <div>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
         <CategoryCatalogView
           category={category}
           categoryGroups={categoryGroups}
@@ -43,8 +65,14 @@ export default function CatalogSlugContent({ slug, cityPrefix = '', citySlug }: 
 
   const groupProducts = group.children.flatMap((child) => getProductsByCategory(child.slug));
   const faq = getCategoryFaq(group.name, city);
+  const breadcrumb = buildBreadcrumbSchema([
+    { name: 'Главная', url: `${BASE_URL}${cityPrefix}/` },
+    { name: 'Каталог', url: `${BASE_URL}${cityPrefix}/catalog` },
+    { name: group.name, url: `${BASE_URL}${cityPrefix}/catalog/${group.slug}` },
+  ]);
   return (
     <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <CategoryCatalogView
         group={group}
         categoryGroups={categoryGroups}

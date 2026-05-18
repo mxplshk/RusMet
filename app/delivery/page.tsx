@@ -1,8 +1,15 @@
 import DeliveryCalculator from '@/components/DeliveryCalculator';
 
-export const metadata = {
-  title: 'Доставка — РусМет',
-  description: 'Условия доставки металлопроката по Санкт-Петербургу, Ленинградской области и регионам России.',
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Доставка металлопроката в Санкт-Петербурге — сроки и условия | Русмет',
+  description: 'Условия доставки металлопроката по Санкт-Петербургу, Ленинградской области и регионам России. Отгрузка в день заказа, собственный автопарк.',
+  alternates: { canonical: 'https://rusmet.ru/delivery' },
+  openGraph: {
+    title: 'Доставка металлопроката — Русмет',
+    description: 'Быстрая доставка металлопроката по СПб и ЛО. Отгрузка в день заказа.',
+  },
 };
 
 const zones = [

@@ -1,6 +1,13 @@
-export const metadata = {
-  title: 'Способы оплаты — РусМет',
-  description: 'Актуальные способы оплаты заказов металлопроката в компании РусМет.',
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Способы оплаты металлопроката — РусМет',
+  description: 'Актуальные способы оплаты заказов металлопроката в компании РусМет. Безналичный расчёт, договор поставки, наличный расчёт.',
+  alternates: { canonical: 'https://rusmet.ru/payment' },
+  openGraph: {
+    title: 'Способы оплаты — РусМет',
+    description: 'Удобные способы оплаты металлопроката: безнал, договор, наличные.',
+  },
 };
 
 const paymentMethods = [

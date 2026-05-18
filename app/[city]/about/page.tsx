@@ -11,6 +11,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `О компании РусМет — металлопрокат ${city.in}`,
     description: `История, ключевые цифры и команда РусМет. Поставщик металлопроката ${city.in} и Ленинградской области.`,
     alternates: { canonical: `https://rusmet.ru/${params.city}/about` },
+    openGraph: {
+      title: `О компании РусМет — ${city.name}`,
+      description: `Поставщик металлопроката ${city.in} и Ленинградской области.`,
+    },
   };
 }
 

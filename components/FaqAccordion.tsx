@@ -14,8 +14,25 @@ interface Props {
 export default function FaqAccordion({ items }: Props) {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    })),
+  };
+
   return (
     <section className="py-20 sm:py-24 bg-[#f5f5f5]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a] mb-2">Частые вопросы</h2>
         <p className="text-gray-500 mb-8 text-sm">Ответы на&nbsp;популярные вопросы о&nbsp;доставке и&nbsp;ассортименте</p>

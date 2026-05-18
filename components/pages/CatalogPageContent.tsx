@@ -4,12 +4,22 @@ import { products } from '@/data/products';
 import CategoryCard from '@/components/CategoryCard';
 import type { City } from '@/lib/cities';
 
+const BASE_URL = 'https://rusmet.ru';
+
 interface Props {
   city: City;
   cityPrefix?: string;
 }
 
 export default function CatalogPageContent({ city, cityPrefix = '' }: Props) {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Главная', item: `${BASE_URL}${cityPrefix}/` },
+      { '@type': 'ListItem', position: 2, name: 'Каталог', item: `${BASE_URL}${cityPrefix}/catalog` },
+    ],
+  };
   const productCounts = products.reduce<Record<string, number>>((acc, product) => {
     acc[product.categorySlug] = (acc[product.categorySlug] ?? 0) + 1;
     return acc;
@@ -17,6 +27,7 @@ export default function CatalogPageContent({ city, cityPrefix = '' }: Props) {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-16 sm:py-24">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <nav className="text-sm text-gray-400 mb-6 flex items-center gap-2">
         <Link href={`${cityPrefix}/`} className="hover:text-[#CC0000] transition-colors">Главная</Link>
         <span>/</span>

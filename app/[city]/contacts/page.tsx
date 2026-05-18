@@ -9,9 +9,13 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const city = getCityBySlug(params.city)!;
   return {
-    title: `Контакты ${city.in} — РусМет`,
-    description: `Адрес, телефон и email РусМет ${city.in}. Металлопрокат оптом и в розницу.`,
+    title: `Контакты РусМет ${city.in} — адрес, телефон, email`,
+    description: `Контактные данные РусМет ${city.in}. Адрес склада, телефон, email. Металлопрокат оптом и в розницу.`,
     alternates: { canonical: `https://rusmet.ru/${params.city}/contacts` },
+    openGraph: {
+      title: `Контакты РусМет ${city.in}`,
+      description: `Адрес, телефон и email РусМет ${city.in}.`,
+    },
   };
 }
 

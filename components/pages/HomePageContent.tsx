@@ -38,40 +38,40 @@ export default function HomePageContent({ city, cityPrefix = '' }: Props) {
 
   /* ── 1. HERO ─────────────────────────────────────────────── */
   const heroBlock = (
-    <section key="hero" className="relative bg-[#1a1a1a] text-white py-20 sm:py-28 overflow-hidden">
+    <section key="hero" className="relative bg-[#1a1a1a] text-white py-14 sm:py-20 lg:py-28 overflow-hidden">
       <Image src="/images/background/background1.png" alt={`Металлопрокат ${city.in} — склад Металлург`} fill priority sizes="100vw" className="object-cover object-center" />
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.20))' }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.80), rgba(0,0,0,0.30))' }} />
       <div className="relative max-w-7xl mx-auto px-4">
         <div className="max-w-3xl">
-          <div className="inline-block bg-[#CC0000] text-white text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded mb-6">
+          <div className="inline-block bg-[#CC0000] text-white text-[10px] sm:text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded mb-4 sm:mb-6">
             {hero.badge}
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-6">
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black leading-tight mb-4 sm:mb-6">
             <span className="text-white" style={{ wordBreak: 'keep-all' }}>{hero.title} </span>
             <br className="hidden sm:block" />
             <span className="text-[#CC0000]">{hero.utp}</span>
           </h1>
-          <p className="text-gray-300 text-lg sm:text-xl mb-8 leading-relaxed max-w-2xl">
+          <p className="text-gray-300 text-base sm:text-xl mb-6 sm:mb-8 leading-relaxed max-w-2xl">
             {hero.sub}. Отгрузка в&nbsp;день заказа.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 mb-10">
-            <Link href={`${cityPrefix}/catalog`} className="bg-[#CC0000] hover:bg-[#aa0000] text-white font-bold px-8 py-4 rounded-xl transition-colors text-center">
+          <div className="flex flex-col sm:flex-row gap-3 mb-8 sm:mb-10">
+            <Link href={`${cityPrefix}/catalog`} className="bg-[#CC0000] hover:bg-[#aa0000] text-white font-bold px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl transition-colors text-center text-sm sm:text-base">
               Смотреть каталог
             </Link>
             <button
               type="button"
               onClick={() => window.dispatchEvent(new Event('open-price-modal'))}
-              className="bg-white hover:bg-gray-100 text-[#1a1a1a] font-bold px-8 py-4 rounded-xl transition-colors text-center"
+              className="bg-white hover:bg-gray-100 text-[#1a1a1a] font-bold px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl transition-colors text-center text-sm sm:text-base"
             >
               Получить прайс
             </button>
           </div>
-          {/* Плашки — ВСЕГДА слева снизу, горизонтальная строка */}
-          <div className="flex flex-wrap gap-3">
+          {/* Плашки */}
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2.5 sm:gap-3">
             {unique.stats.map((s) => (
-              <div key={s.label} className="bg-white/10 backdrop-blur-sm rounded-xl px-6 py-3 flex flex-col">
-                <span className="text-2xl font-black text-white leading-tight">{s.value}</span>
-                <span className="text-gray-300 text-xs mt-0.5 whitespace-nowrap">{s.label}</span>
+              <div key={s.label} className="bg-white/10 backdrop-blur-sm rounded-xl px-4 sm:px-6 py-2.5 sm:py-3 flex flex-col">
+                <span className="text-xl sm:text-2xl font-black text-white leading-tight">{s.value}</span>
+                <span className="text-gray-300 text-[11px] sm:text-xs mt-0.5">{s.label}</span>
               </div>
             ))}
           </div>
@@ -82,11 +82,11 @@ export default function HomePageContent({ city, cityPrefix = '' }: Props) {
 
   /* ── 2. КАТАЛОГ ──────────────────────────────────────────── */
   const catalogBlock = (
-    <section key="catalog" className="py-20 sm:py-24 bg-[#f5f5f5]">
+    <section key="catalog" className="py-12 sm:py-20 lg:py-24 bg-[#f5f5f5]">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-end justify-between mb-10">
+        <div className="flex items-end justify-between mb-6 sm:mb-10">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a]">Каталог продукции</h2>
+            <h2 className="text-xl sm:text-3xl font-black text-[#1a1a1a]">Каталог продукции</h2>
             <p className="text-gray-500 mt-1">{categoryGroups.length} категорий металлопроката</p>
           </div>
           <Link href={`${cityPrefix}/catalog`} className="text-[#CC0000] font-semibold text-sm hover:underline hidden sm:block">Весь каталог &rarr;</Link>
@@ -123,7 +123,7 @@ export default function HomePageContent({ city, cityPrefix = '' }: Props) {
 
   /* ── ДОСТАВКА ────────────────────────────────────────────── */
   const deliveryBlock = (
-    <section key="delivery" className="py-20 sm:py-24">
+    <section key="delivery" className="py-12 sm:py-20 lg:py-24">
       <div className="max-w-7xl mx-auto px-4">
         <div className="relative bg-[#1a1a1a] rounded-2xl overflow-hidden" style={{ minHeight: '280px' }}>
           <div className="relative z-10 w-full lg:w-[55%] p-8 sm:p-10 text-white">
@@ -153,10 +153,10 @@ export default function HomePageContent({ city, cityPrefix = '' }: Props) {
 
   /* ── ПРЕИМУЩЕСТВА ────────────────────────────────────────── */
   const advantagesBlock = (
-    <section key="advantages" className="py-20 sm:py-24 bg-[#f5f5f5]">
+    <section key="advantages" className="py-12 sm:py-20 lg:py-24 bg-[#f5f5f5]">
       <div className="max-w-7xl mx-auto px-4">
         <div className="mb-12">
-          <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a]">Почему выбирают Металлург</h2>
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-[#1a1a1a]">Почему выбирают Металлург</h2>
           <p className="text-gray-500 mt-2">12&nbsp;лет надёжных поставок металлопроката {city.in}</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

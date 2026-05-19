@@ -19,14 +19,14 @@ export default function CallbackForm() {
   };
 
   return (
-    <section id="callback" className="bg-[#CC0000] py-20 sm:py-24">
+    <section id="callback" className="bg-[#CC0000] py-12 sm:py-20 lg:py-24">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex flex-col lg:flex-row lg:items-center gap-10">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-6 sm:gap-10">
           <div className="flex-1">
-            <h2 className="text-2xl sm:text-3xl font-black text-white mb-3">
+            <h2 className="text-xl sm:text-3xl font-black text-white mb-2 sm:mb-3">
               Получите коммерческое предложение
             </h2>
-            <p className="text-red-100 text-lg leading-relaxed">
+            <p className="text-red-100 text-sm sm:text-lg leading-relaxed">
               Оставьте заявку&nbsp;&mdash; перезвоним в&nbsp;течение 15&nbsp;минут и&nbsp;рассчитаем стоимость под&nbsp;ваш проект
             </p>
           </div>

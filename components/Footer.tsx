@@ -26,7 +26,7 @@ export default function Footer() {
             {/* Лого + контакты */}
             <div className="flex-1 order-2 lg:order-1">
               <Link href="/" className="inline-flex mb-4">
-                <Image src="/images/logo/main_logo.png" alt="Металлург" width={140} height={42} className="h-10 w-auto object-contain brightness-0 invert" />
+                <Image src="/images/logo/main_logo.svg" alt="Металлург" width={140} height={42} className="h-10 w-auto object-contain brightness-0 invert" />
               </Link>
               <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
                 Металлопрокат с&nbsp;доставкой по&nbsp;Санкт-Петербургу и&nbsp;Ленинградской области
@@ -104,7 +104,7 @@ export default function Footer() {
           <p className="text-xs text-gray-600 mb-3 leading-relaxed">
             Металлопрокат в&nbsp;Санкт-Петербурге и&nbsp;Ленинградской области оптом и&nbsp;в&nbsp;розницу&nbsp;&mdash; арматура, трубы, листовой прокат, швеллер, уголок, балка. Доставка по&nbsp;СПб, ЛО и&nbsp;всей России. Самовывоз со&nbsp;склада бесплатно.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-sm text-gray-500">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-sm text-gray-500">
             <span>Металлург&nbsp;&mdash; все права защищены</span>
             <span>Металлопрокат оптом и&nbsp;в&nbsp;розницу</span>
           </div>

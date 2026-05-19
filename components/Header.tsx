@@ -111,16 +111,16 @@ export default function Header() {
         </div>
 
         {/* Main header */}
-        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4 relative">
+        <div className="max-w-7xl mx-auto px-4 py-2.5 sm:py-3 flex items-center justify-between gap-3 sm:gap-4 relative">
           {/* Logo */}
           <div className="flex items-center gap-3 flex-shrink-0">
             <Link href={cityPrefix ? `${cityPrefix}/` : '/'}>
               <Image
-                src="/images/logo/main_logo.png"
+                src="/images/logo/main_logo.svg"
                 alt="Металлург"
                 width={160}
                 height={48}
-                className="h-12 w-auto object-contain"
+                className="h-10 sm:h-12 w-auto object-contain"
                 priority
               />
             </Link>
@@ -207,7 +207,7 @@ export default function Header() {
               href="/cart"
               aria-label={`Корзина: ${itemCount} товаров`}
               suppressHydrationWarning
-              className="relative w-10 h-10 rounded-lg border border-gray-200 text-[#1a1a1a] flex items-center justify-center hover:border-[#CC0000] hover:text-[#CC0000] transition-colors"
+              className="relative w-11 h-11 sm:w-10 sm:h-10 rounded-lg border border-gray-200 text-[#1a1a1a] flex items-center justify-center hover:border-[#CC0000] hover:text-[#CC0000] transition-colors"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18.19 17.75H7.53999C6.54999 17.75 5.59999 17.33 4.92999 16.6C4.25999 15.87 3.92 14.89 4 13.9L4.83 3.94C4.86 3.63 4.74999 3.33001 4.53999 3.10001C4.32999 2.87001 4.04 2.75 3.73 2.75H2C1.59 2.75 1.25 2.41 1.25 2C1.25 1.59 1.59 1.25 2 1.25H3.74001C4.47001 1.25 5.15999 1.56 5.64999 2.09C5.91999 2.39 6.12 2.74 6.23 3.13H18.72C19.73 3.13 20.66 3.53 21.34 4.25C22.01 4.98 22.35 5.93 22.27 6.94L21.73 14.44C21.62 16.27 20.02 17.75 18.19 17.75ZM6.28 4.62L5.5 14.02C5.45 14.6 5.64 15.15 6.03 15.58C6.42 16.01 6.95999 16.24 7.53999 16.24H18.19C19.23 16.24 20.17 15.36 20.25 14.32L20.79 6.82001C20.83 6.23001 20.64 5.67001 20.25 5.26001C19.86 4.84001 19.32 4.60999 18.73 4.60999H6.28V4.62Z" />
@@ -234,7 +234,7 @@ export default function Header() {
 
             {/* Burger */}
             <button
-              className="lg:hidden p-2 rounded text-[#1a1a1a]"
+              className="lg:hidden p-2.5 sm:p-2 rounded text-[#1a1a1a]"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Меню"
             >
@@ -251,18 +251,18 @@ export default function Header() {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="lg:hidden border-t border-gray-100 bg-white px-4 py-4 flex flex-col gap-4">
-            <Link href={`${cityPrefix}/catalog`} className="text-sm font-medium hover:text-[#CC0000]" onClick={() => setMenuOpen(false)}>Каталог</Link>
-            <Link href={`${cityPrefix}/delivery`} className="text-sm font-medium hover:text-[#CC0000]" onClick={() => setMenuOpen(false)}>Доставка</Link>
-            <Link href={`${cityPrefix}/about`} className="text-sm font-medium hover:text-[#CC0000]" onClick={() => setMenuOpen(false)}>О компании</Link>
-            <Link href={`${cityPrefix}/payment`} className="text-sm font-medium hover:text-[#CC0000]" onClick={() => setMenuOpen(false)}>Способы оплаты</Link>
-            <Link href={`${cityPrefix}/contacts`} className="text-sm font-medium hover:text-[#CC0000]" onClick={() => setMenuOpen(false)}>Контакты</Link>
+          <div className="lg:hidden border-t border-gray-100 bg-white px-4 py-3 flex flex-col gap-1">
+            <Link href={`${cityPrefix}/catalog`} className="text-sm font-medium hover:text-[#CC0000] py-3 border-b border-gray-50" onClick={() => setMenuOpen(false)}>Каталог</Link>
+            <Link href={`${cityPrefix}/delivery`} className="text-sm font-medium hover:text-[#CC0000] py-3 border-b border-gray-50" onClick={() => setMenuOpen(false)}>Доставка</Link>
+            <Link href={`${cityPrefix}/about`} className="text-sm font-medium hover:text-[#CC0000] py-3 border-b border-gray-50" onClick={() => setMenuOpen(false)}>О компании</Link>
+            <Link href={`${cityPrefix}/payment`} className="text-sm font-medium hover:text-[#CC0000] py-3 border-b border-gray-50" onClick={() => setMenuOpen(false)}>Способы оплаты</Link>
+            <Link href={`${cityPrefix}/contacts`} className="text-sm font-medium hover:text-[#CC0000] py-3" onClick={() => setMenuOpen(false)}>Контакты</Link>
             <button
               onClick={() => {
                 setCallModal(true);
                 setMenuOpen(false);
               }}
-              className="bg-[#CC0000] text-white font-semibold text-sm px-4 py-2.5 rounded-lg text-center"
+              className="bg-[#CC0000] text-white font-bold text-sm px-4 py-3.5 rounded-xl text-center mt-3"
             >
               Заказать звонок
             </button>

@@ -36,7 +36,7 @@ export default function ReviewsBlock({ reviews }: Props) {
   };
 
   return (
-    <section className="py-20 sm:py-24 bg-white">
+    <section className="py-12 sm:py-20 lg:py-24 bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateSchema) }} />
       <div className="max-w-7xl mx-auto px-4">
         <div className="mb-10">

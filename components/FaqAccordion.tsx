@@ -28,14 +28,14 @@ export default function FaqAccordion({ items }: Props) {
   };
 
   return (
-    <section className="py-20 sm:py-24 bg-[#f5f5f5]">
+    <section className="py-12 sm:py-20 lg:py-24 bg-[#f5f5f5]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a] mb-2">Частые вопросы</h2>
-        <p className="text-gray-500 mb-8 text-sm">Ответы на&nbsp;популярные вопросы о&nbsp;доставке и&nbsp;ассортименте</p>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-[#1a1a1a] mb-2">Частые вопросы</h2>
+        <p className="text-gray-500 mb-6 sm:mb-8 text-sm">Ответы на&nbsp;популярные вопросы о&nbsp;доставке и&nbsp;ассортименте</p>
         <div className="flex flex-col gap-2">
           {items.map((item, i) => {
             const isOpen = openIdx === i;

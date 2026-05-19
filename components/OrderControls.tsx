@@ -80,24 +80,24 @@ export default function OrderControls({ productId, slug, name, price, unit, size
       </div>
 
       {/* Action buttons */}
-      <div className="flex gap-3 flex-wrap">
+      <div className="flex flex-col sm:flex-row gap-3">
         <button
           onClick={handleAddToCart}
-          className="flex-1 min-w-[160px] bg-[#CC0000] hover:bg-[#aa0000] text-white font-bold py-4 rounded-xl transition-colors"
+          className="flex-1 bg-[#CC0000] hover:bg-[#aa0000] text-white font-bold py-3.5 rounded-xl transition-colors text-sm sm:text-base"
         >
           В корзину
         </button>
         <button
           type="button"
           onClick={() => window.dispatchEvent(new Event('open-call-modal'))}
-          className="flex-1 min-w-[160px] bg-gray-100 hover:bg-gray-200 text-[#1a1a1a] font-bold py-4 rounded-xl transition-colors"
+          className="flex-1 bg-gray-100 hover:bg-gray-200 text-[#1a1a1a] font-bold py-3.5 rounded-xl transition-colors text-sm sm:text-base"
         >
           Заказать звонок
         </button>
       </div>
 
       {/* Quick order */}
-      <div className="border border-gray-200 rounded-xl p-5">
+      <div className="border border-gray-200 rounded-xl p-4 sm:p-5">
         <h3 className="font-bold text-[#1a1a1a] mb-3 text-sm">Быстрый заказ</h3>
         {quickSent ? (
           <p className="text-sm text-green-600 font-medium">Спасибо! Менеджер свяжется с вами в ближайшее время.</p>
@@ -121,7 +121,7 @@ export default function OrderControls({ productId, slug, name, price, unit, size
             />
             <button
               type="submit"
-              className="bg-[#CC0000] hover:bg-[#aa0000] text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors whitespace-nowrap"
+              className="bg-[#CC0000] hover:bg-[#aa0000] text-white font-bold px-6 py-3 rounded-xl text-sm transition-colors whitespace-nowrap w-full sm:w-auto"
             >
               Отправить
             </button>

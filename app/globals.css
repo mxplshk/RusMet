@@ -34,6 +34,37 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Mobile Design System ─────────────────────────────── */
+@layer base {
+  /* Mobile-first container padding */
+  .max-w-7xl { @apply px-4; }
+
+  /* Unified mobile section spacing */
+  @media (max-width: 639px) {
+    /* Section vertical rhythm */
+    .mobile-section { @apply py-12; }
+
+    /* Unified mobile button */
+    .mobile-btn {
+      @apply h-12 px-5 text-sm font-bold rounded-xl;
+    }
+
+    /* Unified mobile input */
+    .mobile-input {
+      @apply h-12 px-4 text-sm rounded-xl border border-gray-200;
+    }
+  }
+}
+
+/* Mobile scroll hint animation */
+@keyframes scrollHint {
+  0%, 100% { transform: translateX(0); opacity: 0.6; }
+  50% { transform: translateX(8px); opacity: 1; }
+}
+.scroll-hint-arrow {
+  animation: scrollHint 2s ease-in-out 3;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   color: #1a1a1a;

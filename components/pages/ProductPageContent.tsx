@@ -80,12 +80,12 @@ export default function ProductPageContent({ slug, cityPrefix = '', cityName, ci
   const faq = getProductFaq(product.name, city);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-14 sm:py-20">
+    <div className="max-w-7xl mx-auto px-4 py-8 sm:py-14 lg:py-20">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Breadcrumbs */}
-      <nav className="text-sm text-gray-400 mb-8 flex items-center gap-2 flex-wrap">
+      <nav className="text-xs sm:text-sm text-gray-400 mb-6 sm:mb-8 flex items-center gap-1.5 sm:gap-2 flex-wrap">
         <Link href={`${cityPrefix}/`} className="hover:text-[#CC0000] transition-colors">Главная</Link>
         <span>/</span>
         <Link href={`${cityPrefix}/catalog`} className="hover:text-[#CC0000] transition-colors">Каталог</Link>

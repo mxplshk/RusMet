@@ -49,7 +49,7 @@ export default function HomePageContent({ city, cityPrefix = '' }: Props) {
           <h1 className="text-[28px] sm:text-4xl lg:text-5xl font-black leading-[1.15] mb-4 sm:mb-6 text-balance">
             <span className="text-white" style={{ wordBreak: 'keep-all' }}>{hero.title} </span>
             <br className="hidden sm:block" />
-            <span className="inline-flex items-center bg-white/90 backdrop-blur-sm text-[#CC0000] text-[22px] sm:text-[32px] lg:text-[40px] font-bold px-4 sm:px-6 py-0.5 sm:py-1 rounded-full mt-2 sm:mt-3 whitespace-nowrap">{hero.utp}</span>
+            <span className="inline-flex items-center bg-white/90 backdrop-blur-sm text-[#CC0000] text-[20px] sm:text-[30px] lg:text-[38px] font-bold px-5 sm:px-7 py-2 sm:py-3 rounded-full mt-2 sm:mt-3 whitespace-nowrap leading-none">{hero.utp}</span>
           </h1>
           <p className="text-gray-300 text-base sm:text-xl mb-6 sm:mb-8 leading-relaxed max-w-2xl">
             {hero.sub}. Отгрузка в&nbsp;день заказа.

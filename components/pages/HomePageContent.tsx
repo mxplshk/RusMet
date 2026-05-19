@@ -43,13 +43,13 @@ export default function HomePageContent({ city, cityPrefix = '' }: Props) {
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.80), rgba(0,0,0,0.30))' }} />
       <div className="relative max-w-7xl mx-auto px-4">
         <div className="max-w-3xl">
-          <div className="inline-block bg-[#CC0000] text-white text-[10px] sm:text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded mb-4 sm:mb-6">
+          <div className="inline-flex items-center bg-white/95 backdrop-blur-sm text-[#CC0000] text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] px-4 sm:px-5 py-2 sm:py-2.5 rounded-full mb-4 sm:mb-6 whitespace-nowrap">
             {hero.badge}
           </div>
           <h1 className="text-[28px] sm:text-4xl lg:text-5xl font-black leading-[1.15] mb-4 sm:mb-6 text-balance">
             <span className="text-white" style={{ wordBreak: 'keep-all' }}>{hero.title} </span>
             <br className="hidden sm:block" />
-            <span className="text-[#CC0000]">{hero.utp}</span>
+            <span className="inline-flex items-center bg-white/95 backdrop-blur-sm text-[#CC0000] text-[22px] sm:text-[32px] lg:text-[40px] font-black uppercase tracking-wide px-4 sm:px-6 py-1 sm:py-1.5 rounded-full mt-2 sm:mt-3 whitespace-nowrap">{hero.utp}</span>
           </h1>
           <p className="text-gray-300 text-base sm:text-xl mb-6 sm:mb-8 leading-relaxed max-w-2xl">
             {hero.sub}. Отгрузка в&nbsp;день заказа.

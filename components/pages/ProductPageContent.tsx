@@ -116,14 +116,14 @@ export default function ProductPageContent({ slug, cityPrefix = '', cityName, ci
         </div>
 
         <div className="flex-1 min-w-0">
-          <h1 className="text-xl sm:text-2xl lg:text-3xl font-black text-[#1a1a1a] mb-2 leading-tight">
+          <h1 className="text-[22px] sm:text-2xl lg:text-3xl font-black text-[#1a1a1a] mb-2 leading-tight text-balance">
             {product.name}{cityName ? ` ${cityName}` : ''}
           </h1>
-          <p className="text-sm text-gray-400 mb-5">
+          <p className="text-xs sm:text-sm text-gray-400 mb-4 sm:mb-5">
             Артикул: <span className="font-mono text-gray-500">{product.slug}</span>
           </p>
           <div className="mb-4">
-            <span className="text-3xl font-black text-[#CC0000]">{formattedPrice}&nbsp;&#8381;</span>
+            <span className="text-2xl sm:text-3xl font-black text-[#CC0000]">{formattedPrice}&nbsp;&#8381;</span>
             <span className="text-gray-500 text-sm ml-2">за&nbsp;{product.unit}</span>
           </div>
           <div className="inline-flex items-center gap-2 bg-[#f5f5f5] rounded-lg px-4 py-2 mb-6">
@@ -150,7 +150,7 @@ export default function ProductPageContent({ slug, cityPrefix = '', cityName, ci
       {/* Related */}
       {related.length > 0 && (
         <section className="mt-12">
-          <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a] mb-6">Похожие товары</h2>
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-[#1a1a1a] mb-4 sm:mb-6">Похожие товары</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {related.map((p) => <ProductCard key={p.id} product={p} cityPrefix={cityPrefix} />)}
           </div>

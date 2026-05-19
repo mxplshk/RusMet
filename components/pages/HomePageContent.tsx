@@ -46,7 +46,7 @@ export default function HomePageContent({ city, cityPrefix = '' }: Props) {
           <div className="inline-block bg-[#CC0000] text-white text-[10px] sm:text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded mb-4 sm:mb-6">
             {hero.badge}
           </div>
-          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black leading-tight mb-4 sm:mb-6">
+          <h1 className="text-[28px] sm:text-4xl lg:text-5xl font-black leading-[1.15] mb-4 sm:mb-6 text-balance">
             <span className="text-white" style={{ wordBreak: 'keep-all' }}>{hero.title} </span>
             <br className="hidden sm:block" />
             <span className="text-[#CC0000]">{hero.utp}</span>
@@ -126,8 +126,8 @@ export default function HomePageContent({ city, cityPrefix = '' }: Props) {
     <section key="delivery" className="py-12 sm:py-20 lg:py-24">
       <div className="max-w-7xl mx-auto px-4">
         <div className="relative bg-[#1a1a1a] rounded-2xl overflow-hidden" style={{ minHeight: '280px' }}>
-          <div className="relative z-10 w-full lg:w-[55%] p-8 sm:p-10 text-white">
-            <h2 className="text-2xl sm:text-3xl font-black mb-4">Доставка {city.by} и&nbsp;Ленинградской области</h2>
+          <div className="relative z-10 w-full lg:w-[55%] p-5 sm:p-8 lg:p-10 text-white">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black mb-4 text-balance">Доставка {city.by} и&nbsp;Ленинградской области</h2>
             <p className="text-gray-300 leading-relaxed mb-6">{unique.text}</p>
             <ul className="flex flex-col gap-3 text-sm text-gray-300">
               {[

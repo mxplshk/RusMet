@@ -23,7 +23,7 @@ export default function CallbackForm() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col lg:flex-row lg:items-center gap-6 sm:gap-10">
           <div className="flex-1">
-            <h2 className="text-xl sm:text-3xl font-black text-white mb-2 sm:mb-3">
+            <h2 className="text-xl sm:text-3xl font-black text-white mb-2 sm:mb-3 text-balance">
               Получите коммерческое предложение
             </h2>
             <p className="text-red-100 text-sm sm:text-lg leading-relaxed">
@@ -39,9 +39,9 @@ export default function CallbackForm() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                <input ref={nameRef} type="text" placeholder="Ваше имя" required className="rounded-xl px-4 py-3.5 text-sm text-[#1a1a1a] focus:outline-none focus:ring-2 focus:ring-white/50" />
-                <input ref={phoneRef} type="tel" placeholder="+7 (___) ___-__-__" required className="rounded-xl px-4 py-3.5 text-sm text-[#1a1a1a] focus:outline-none focus:ring-2 focus:ring-white/50" />
-                <button type="submit" className="bg-[#1a1a1a] hover:bg-black text-white font-bold px-8 py-3.5 rounded-xl transition-colors w-full">
+                <input ref={nameRef} type="text" placeholder="Ваше имя" required className="rounded-xl px-4 py-3 sm:py-3.5 text-sm text-[#1a1a1a] focus:outline-none focus:ring-2 focus:ring-white/50" />
+                <input ref={phoneRef} type="tel" placeholder="+7 (___) ___-__-__" required className="rounded-xl px-4 py-3 sm:py-3.5 text-sm text-[#1a1a1a] focus:outline-none focus:ring-2 focus:ring-white/50" />
+                <button type="submit" className="bg-[#1a1a1a] hover:bg-black text-white font-bold px-6 py-3.5 rounded-xl transition-colors w-full text-sm sm:text-base">
                   Получить предложение
                 </button>
                 <p className="text-red-100 text-xs text-center">Свяжемся в&nbsp;течение 15&nbsp;минут</p>

@@ -35,7 +35,7 @@ export default function CatalogPageContent({ city, cityPrefix = '' }: Props) {
       </nav>
 
       <div className="mb-10">
-        <h1 className="text-3xl sm:text-4xl font-black text-[#1a1a1a]">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1a1a1a] text-balance">
           Каталог металлопроката {city.in}
         </h1>
         <p className="text-gray-500 mt-2">

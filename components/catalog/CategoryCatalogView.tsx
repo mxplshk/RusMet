@@ -290,32 +290,36 @@ export default function CategoryCatalogView({ category, group, categoryGroups, p
                   }
                 </p>
                 {group && (
-                  <div className="flex flex-wrap gap-2 mt-3">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedSubSlug(null)}
-                      className={`text-xs px-3 py-1 rounded-full border transition-colors ${
-                        !selectedSubSlug
-                          ? 'bg-[#CC0000] text-white border-[#CC0000]'
-                          : 'border-gray-200 text-gray-600 hover:border-[#CC0000] hover:text-[#CC0000]'
-                      }`}
-                    >
-                      Все
-                    </button>
-                    {group.children.map((child) => (
+                  <div className="relative mt-3">
+                    <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide sm:flex-wrap sm:overflow-visible">
                       <button
-                        key={child.slug}
                         type="button"
-                        onClick={() => setSelectedSubSlug(selectedSubSlug === child.slug ? null : child.slug)}
-                        className={`text-xs px-3 py-1 rounded-full border transition-colors ${
-                          selectedSubSlug === child.slug
+                        onClick={() => setSelectedSubSlug(null)}
+                        className={`text-xs px-3 py-1.5 rounded-full border transition-colors whitespace-nowrap flex-shrink-0 ${
+                          !selectedSubSlug
                             ? 'bg-[#CC0000] text-white border-[#CC0000]'
                             : 'border-gray-200 text-gray-600 hover:border-[#CC0000] hover:text-[#CC0000]'
                         }`}
                       >
-                        {child.name}
+                        Все
                       </button>
-                    ))}
+                      {group.children.map((child) => (
+                        <button
+                          key={child.slug}
+                          type="button"
+                          onClick={() => setSelectedSubSlug(selectedSubSlug === child.slug ? null : child.slug)}
+                          className={`text-xs px-3 py-1.5 rounded-full border transition-colors whitespace-nowrap flex-shrink-0 ${
+                            selectedSubSlug === child.slug
+                              ? 'bg-[#CC0000] text-white border-[#CC0000]'
+                              : 'border-gray-200 text-gray-600 hover:border-[#CC0000] hover:text-[#CC0000]'
+                          }`}
+                        >
+                          {child.name}
+                        </button>
+                      ))}
+                    </div>
+                    {/* Mobile scroll hint */}
+                    <div className="absolute right-0 top-0 bottom-1 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none sm:hidden" />
                   </div>
                 )}
               </div>

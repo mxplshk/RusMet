@@ -7,9 +7,10 @@ interface Props {
   category: Category;
   productCount?: number;
   cityPrefix?: string;
+  cityName?: string;
 }
 
-export default function CategoryCard({ category, productCount, cityPrefix = '' }: Props) {
+export default function CategoryCard({ category, productCount, cityPrefix = '', cityName = 'Санкт-Петербург' }: Props) {
   const imageSrc = getCategoryImage(category.slug, category.parentSlug);
 
   return (
@@ -21,7 +22,7 @@ export default function CategoryCard({ category, productCount, cityPrefix = '' }
         {imageSrc ? (
           <Image
             src={imageSrc}
-            alt={`${category.name} — металлопрокат Санкт-Петербург`}
+            alt={`${category.name} — металлопрокат ${cityName}`}
             width={200}
             height={144}
             className="w-full h-full object-contain p-3"

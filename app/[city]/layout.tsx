@@ -27,11 +27,11 @@ function buildLocalBusinessSchema(city: City, citySlug: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: 'РусМет',
+    name: 'Металлург',
     description: `Продажа металлопроката ${city.in}. Арматура, трубы, листовой прокат, швеллер, уголок оптом и в розницу.`,
-    url: `https://rusmet.ru/${citySlug}`,
+    url: `https://metallurgspb.ru/${citySlug}`,
     telephone: city.phone,
-    email: 'info@rusmet.ru',
+    email: 'info@metallurgspb.ru',
     address: {
       '@type': 'PostalAddress',
       streetAddress: city.streetAddress,
@@ -52,8 +52,8 @@ function buildLocalBusinessSchema(city: City, citySlug: string) {
       name: city.name,
     },
     hasMap: city.mapLink,
-    image: 'https://rusmet.ru/images/logo/main_logo.png',
-    sameAs: ['https://rusmet.ru'],
+    image: 'https://metallurgspb.ru/images/logo/main_logo.png',
+    sameAs: ['https://metallurgspb.ru'],
   };
 }
 

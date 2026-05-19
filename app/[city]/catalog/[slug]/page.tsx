@@ -15,11 +15,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const category = getCategoryBySlug(params.slug);
   if (category) {
     return {
-      title: `${category.name} ${city.in} — купить оптом и в розницу | Русмет`,
+      title: `${category.name} ${city.in} — купить оптом и в розницу | Металлург`,
       description: `Купить ${category.name.toLowerCase()} ${city.in}. Актуальные цены, доставка, большой ассортимент.`,
-      alternates: { canonical: `https://rusmet.ru/${params.city}/catalog/${params.slug}` },
+      alternates: { canonical: `https://metallurgspb.ru/${params.city}/catalog/${params.slug}` },
       openGraph: {
-        title: `${category.name} ${city.in} — Русмет`,
+        title: `${category.name} ${city.in} — Металлург`,
         description: `Купить ${category.name.toLowerCase()} ${city.in}. Цены, наличие, доставка.`,
       },
     };
@@ -27,11 +27,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const group = getCategoryGroupBySlug(params.slug);
   if (group) {
     return {
-      title: `${group.name} ${city.in} — купить оптом и в розницу | Русмет`,
+      title: `${group.name} ${city.in} — купить оптом и в розницу | Металлург`,
       description: `Купить ${group.name.toLowerCase()} ${city.in}. Все виды и размеры, актуальные цены, наличие на складе.`,
-      alternates: { canonical: `https://rusmet.ru/${params.city}/catalog/${params.slug}` },
+      alternates: { canonical: `https://metallurgspb.ru/${params.city}/catalog/${params.slug}` },
       openGraph: {
-        title: `${group.name} ${city.in} — Русмет`,
+        title: `${group.name} ${city.in} — Металлург`,
         description: `${group.name} оптом и в розницу ${city.in}. Актуальные цены.`,
       },
     };

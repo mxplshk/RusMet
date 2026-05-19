@@ -3,13 +3,13 @@ import { defaultCity } from '@/lib/cities';
 import HomePageContent from '@/components/pages/HomePageContent';
 
 export const metadata: Metadata = {
-  title: 'Металлопрокат в Санкт-Петербурге и Ленинградской области — купить оптом и в розницу | Русмет',
+  title: 'Металлопрокат в Санкт-Петербурге и Ленинградской области — купить оптом и в розницу | Металлург',
   description: 'Продажа металлопроката в Санкт-Петербурге и ЛО. Арматура, трубы, лист, швеллер и др. Прямые поставки, доставка по России, отгрузка в день заказа.',
   openGraph: {
-    title: 'Металлопрокат в Санкт-Петербурге и ЛО — Русмет',
+    title: 'Металлопрокат в Санкт-Петербурге и ЛО — Металлург',
     description: 'Арматура, трубы, листовой прокат, швеллер, уголок. Оптом и в розницу со склада в Санкт-Петербурге.',
   },
-  alternates: { canonical: 'https://rusmet.ru' },
+  alternates: { canonical: 'https://metallurgspb.ru' },
   other: {
     'geo.region': defaultCity.geoRegion,
     'geo.placename': defaultCity.name,
@@ -21,10 +21,14 @@ export const metadata: Metadata = {
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Русмет',
-  url: 'https://rusmet.ru',
+  name: 'Металлург',
+  url: 'https://metallurgspb.ru',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://metallurgspb.ru/images/logo/main_logo.png',
+  },
   telephone: defaultCity.phone,
-  email: 'info@rusmet.ru',
+  email: 'info@metallurgspb.ru',
   address: {
     '@type': 'PostalAddress',
     streetAddress: defaultCity.streetAddress,
@@ -38,11 +42,11 @@ const organizationSchema = {
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  name: 'РусМет',
+  name: 'Металлург',
   description: 'Продажа металлопроката в Санкт-Петербурге и ЛО. Арматура, трубы, листовой прокат, швеллер, уголок оптом и в розницу.',
-  url: 'https://rusmet.ru',
+  url: 'https://metallurgspb.ru',
   telephone: defaultCity.phone,
-  email: 'info@rusmet.ru',
+  email: 'info@metallurgspb.ru',
   address: {
     '@type': 'PostalAddress',
     streetAddress: defaultCity.streetAddress,
@@ -60,7 +64,7 @@ const localBusinessSchema = {
   currenciesAccepted: 'RUB',
   areaServed: { '@type': 'City', name: defaultCity.name },
   hasMap: defaultCity.mapLink,
-  image: 'https://rusmet.ru/images/logo/main_logo.png',
+  image: 'https://metallurgspb.ru/images/logo/main_logo.png',
 };
 
 export default function HomePage() {

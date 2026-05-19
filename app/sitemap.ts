@@ -3,11 +3,14 @@ import { categoryGroups, categories } from '@/data/categories';
 import { products } from '@/data/products';
 import { cities } from '@/lib/cities';
 
-const BASE_URL = 'https://rusmet.ru';
-const NOW = new Date().toISOString();
+const BASE_URL = 'https://metallurgspb.ru';
+// Стабильная дата — обновлять при реальных изменениях контента
+const LAST_CONTENT_UPDATE = '2025-05-19';
 
 // Статические страницы (без города)
 const staticSlugs = ['catalog', 'delivery', 'about', 'payment', 'contacts'] as const;
+// City static pages — все с уникальным контентом
+const cityStaticSlugs = ['catalog', 'delivery', 'about', 'payment', 'contacts'] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
@@ -15,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // ── Главная ────────────────────────────────────────────────
   entries.push({
     url: BASE_URL,
-    lastModified: NOW,
+    lastModified: LAST_CONTENT_UPDATE,
     changeFrequency: 'weekly',
     priority: 1.0,
   });
@@ -24,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const slug of staticSlugs) {
     entries.push({
       url: `${BASE_URL}/${slug}`,
-      lastModified: NOW,
+      lastModified: LAST_CONTENT_UPDATE,
       changeFrequency: 'monthly',
       priority: slug === 'catalog' ? 0.9 : 0.5,
     });
@@ -34,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const g of categoryGroups) {
     entries.push({
       url: `${BASE_URL}/catalog/${g.slug}`,
-      lastModified: NOW,
+      lastModified: LAST_CONTENT_UPDATE,
       changeFrequency: 'weekly',
       priority: 0.8,
     });
@@ -44,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const c of categories) {
     entries.push({
       url: `${BASE_URL}/catalog/${c.slug}`,
-      lastModified: NOW,
+      lastModified: LAST_CONTENT_UPDATE,
       changeFrequency: 'weekly',
       priority: 0.7,
     });
@@ -54,7 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const p of products) {
     entries.push({
       url: `${BASE_URL}/product/${p.slug}`,
-      lastModified: NOW,
+      lastModified: LAST_CONTENT_UPDATE,
       changeFrequency: 'weekly',
       priority: 0.6,
     });
@@ -65,18 +68,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // City home
     entries.push({
       url: `${BASE_URL}/${city.slug}`,
-      lastModified: NOW,
+      lastModified: LAST_CONTENT_UPDATE,
       changeFrequency: 'weekly',
       priority: 0.9,
     });
 
-    // City static pages
-    for (const slug of staticSlugs) {
+    // City static pages (only unique content)
+    for (const slug of cityStaticSlugs) {
       entries.push({
         url: `${BASE_URL}/${city.slug}/${slug}`,
-        lastModified: NOW,
+        lastModified: LAST_CONTENT_UPDATE,
         changeFrequency: 'monthly',
-        priority: slug === 'catalog' ? 0.7 : 0.4,
+        priority: slug === 'catalog' ? 0.7 : 0.5,
       });
     }
 
@@ -84,7 +87,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const g of categoryGroups) {
       entries.push({
         url: `${BASE_URL}/${city.slug}/catalog/${g.slug}`,
-        lastModified: NOW,
+        lastModified: LAST_CONTENT_UPDATE,
         changeFrequency: 'weekly',
         priority: 0.7,
       });
@@ -94,7 +97,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const c of categories) {
       entries.push({
         url: `${BASE_URL}/${city.slug}/catalog/${c.slug}`,
-        lastModified: NOW,
+        lastModified: LAST_CONTENT_UPDATE,
         changeFrequency: 'weekly',
         priority: 0.6,
       });
@@ -104,7 +107,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const p of products) {
       entries.push({
         url: `${BASE_URL}/${city.slug}/product/${p.slug}`,
-        lastModified: NOW,
+        lastModified: LAST_CONTENT_UPDATE,
         changeFrequency: 'weekly',
         priority: 0.5,
       });

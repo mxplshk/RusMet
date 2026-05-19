@@ -1,13 +1,14 @@
+import Link from 'next/link';
 import DeliveryCalculator from '@/components/DeliveryCalculator';
 
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Доставка металлопроката в Санкт-Петербурге — сроки и условия | Русмет',
+  title: 'Доставка металлопроката в Санкт-Петербурге — сроки и условия | Металлург',
   description: 'Условия доставки металлопроката по Санкт-Петербургу, Ленинградской области и регионам России. Отгрузка в день заказа, собственный автопарк.',
-  alternates: { canonical: 'https://rusmet.ru/delivery' },
+  alternates: { canonical: 'https://metallurgspb.ru/delivery' },
   openGraph: {
-    title: 'Доставка металлопроката — Русмет',
+    title: 'Доставка металлопроката — Металлург',
     description: 'Быстрая доставка металлопроката по СПб и ЛО. Отгрузка в день заказа.',
   },
 };
@@ -20,9 +21,24 @@ const zones = [
 ];
 
 export default function DeliveryPage() {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Главная', item: 'https://metallurgspb.ru' },
+      { '@type': 'ListItem', position: 2, name: 'Доставка', item: 'https://metallurgspb.ru/delivery' },
+    ],
+  };
+
   return (
     <div className="bg-[#f5f5f5] min-h-screen py-16 sm:py-24">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="max-w-7xl mx-auto px-4">
+        <nav className="text-sm text-gray-400 mb-6 flex items-center gap-2">
+          <Link href="/" className="hover:text-[#CC0000] transition-colors">Главная</Link>
+          <span>/</span>
+          <span className="text-[#1a1a1a]">Доставка</span>
+        </nav>
         <div className="mb-10">
           <h1 className="text-3xl sm:text-4xl font-black text-[#1a1a1a] mb-3">Доставка</h1>
           <p className="text-gray-600 max-w-3xl leading-relaxed">

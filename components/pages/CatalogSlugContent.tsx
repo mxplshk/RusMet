@@ -6,7 +6,7 @@ import CategorySeoBlock from '@/components/CategorySeoBlock';
 import FaqAccordion from '@/components/FaqAccordion';
 import { defaultCity, getCityBySlug, getCategoryFaq, type City } from '@/lib/cities';
 
-const BASE_URL = 'https://rusmet.ru';
+const BASE_URL = 'https://metallurgspb.ru';
 
 interface Props {
   slug: string;
@@ -53,7 +53,7 @@ export default function CatalogSlugContent({ slug, cityPrefix = '', citySlug }: 
           deliveryTime={city.deliveryTime}
         />
         <div className="max-w-7xl mx-auto px-4 pb-10">
-          <CategorySeoBlock groupSlug={category.parentSlug} cityIn={city.in} />
+          <CategorySeoBlock groupSlug={category.parentSlug} cityIn={city.in} cityBy={city.by} />
         </div>
         <FaqAccordion items={faq} />
       </div>
@@ -83,7 +83,7 @@ export default function CatalogSlugContent({ slug, cityPrefix = '', citySlug }: 
         deliveryTime={city.deliveryTime}
       />
       <div className="max-w-7xl mx-auto px-4 pb-10">
-        <CategorySeoBlock groupSlug={group.slug} cityIn={city.in} />
+        <CategorySeoBlock groupSlug={group.slug} cityIn={city.in} cityBy={city.by} />
       </div>
       <FaqAccordion items={faq} />
     </div>

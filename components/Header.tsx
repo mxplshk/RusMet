@@ -75,8 +75,8 @@ export default function Header() {
               <span className="text-gray-300 sm:hidden">Пн–Пт: 9:00–18:00</span>
             </div>
             <div className="flex items-center gap-4">
-              <a href="mailto:info@rusmet.ru" className="text-gray-300 hover:text-white transition-colors">
-                info@rusmet.ru
+              <a href="mailto:info@metallurgspb.ru" className="text-gray-300 hover:text-white transition-colors">
+                info@metallurgspb.ru
               </a>
               <a href="tel:+78121234567" className="text-white font-semibold hover:text-red-400 transition-colors">
                 +7 (812) 123-45-67
@@ -117,7 +117,7 @@ export default function Header() {
             <Link href={cityPrefix ? `${cityPrefix}/` : '/'}>
               <Image
                 src="/images/logo/main_logo.png"
-                alt="РусМет"
+                alt="Металлург"
                 width={160}
                 height={48}
                 className="h-12 w-auto object-contain"

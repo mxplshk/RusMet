@@ -13,10 +13,10 @@ import CallbackForm from '@/components/CallbackForm';
 import FaqAccordion from '@/components/FaqAccordion';
 
 const ADV_ICONS = [
-  <svg key="i0" className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>,
-  <svg key="i1" className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>,
-  <svg key="i2" className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
-  <svg key="i3" className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>,
+  <svg key="i0" className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>,
+  <svg key="i1" className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>,
+  <svg key="i2" className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
+  <svg key="i3" className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>,
 ];
 
 interface Props { city: City; cityPrefix?: string; }
@@ -38,7 +38,8 @@ export default function HomePageContent({ city, cityPrefix = '' }: Props) {
 
   /* ── 1. HERO ─────────────────────────────────────────────── */
   const heroBlock = (
-    <section key="hero" className="relative bg-[#1a1a1a] text-white py-20 sm:py-28" style={{ backgroundImage: "url('/images/background/background1.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <section key="hero" className="relative bg-[#1a1a1a] text-white py-20 sm:py-28 overflow-hidden">
+      <Image src="/images/background/background1.png" alt={`Металлопрокат ${city.in} — склад Металлург`} fill priority sizes="100vw" className="object-cover object-center" />
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.20))' }} />
       <div className="relative max-w-7xl mx-auto px-4">
         <div className="max-w-3xl">
@@ -96,7 +97,7 @@ export default function HomePageContent({ city, cityPrefix = '' }: Props) {
             return (
               <Link key={group.id} href={`${cityPrefix}/catalog/${group.slug}`} className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:shadow-md hover:border-[#CC0000]/30 transition-all group flex flex-col">
                 <div className="w-full h-44 bg-white flex items-center justify-center overflow-hidden">
-                  {img ? <Image src={img} alt={group.name} width={200} height={144} className="w-full h-full object-contain p-3" /> : <svg viewBox="0 0 48 48" className="w-12 h-12 text-gray-200" fill="none" stroke="currentColor" strokeWidth="2"><rect x="8" y="16" width="32" height="16" rx="1" /><line x1="8" y1="24" x2="40" y2="24" /></svg>}
+                  {img ? <Image src={img} alt={`${group.name} — металлопрокат ${city.name}`} width={200} height={144} className="w-full h-full object-contain p-3" /> : <svg viewBox="0 0 48 48" className="w-12 h-12 text-gray-200" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><rect x="8" y="16" width="32" height="16" rx="1" /><line x1="8" y1="24" x2="40" y2="24" /></svg>}
                 </div>
                 <div className="p-3 text-center">
                   <div className="font-semibold text-[#1a1a1a] text-sm group-hover:text-[#CC0000] transition-colors leading-snug">{group.name}</div>
@@ -155,7 +156,7 @@ export default function HomePageContent({ city, cityPrefix = '' }: Props) {
     <section key="advantages" className="py-20 sm:py-24 bg-[#f5f5f5]">
       <div className="max-w-7xl mx-auto px-4">
         <div className="mb-12">
-          <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a]">Почему выбирают РусМет</h2>
+          <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a]">Почему выбирают Металлург</h2>
           <p className="text-gray-500 mt-2">12&nbsp;лет надёжных поставок металлопроката {city.in}</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = 'https://rusmet.ru';
+  const siteUrl = 'https://metallurgspb.ru';
 
   // Preview/staging — закрыть всё от индексации
   if (process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production') {

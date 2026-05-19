@@ -1,11 +1,12 @@
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'О компании РусМет — поставщик металлопроката в Санкт-Петербурге',
-  description: 'История, ключевые цифры и команда компании РусМет. Поставщик металлопроката в Санкт-Петербурге и Ленинградской области с 2012 года.',
-  alternates: { canonical: 'https://rusmet.ru/about' },
+  title: 'О компании Металлург — поставщик металлопроката в Санкт-Петербурге',
+  description: 'История, ключевые цифры и команда компании Металлург. Поставщик металлопроката в Санкт-Петербурге и Ленинградской области с 2012 года.',
+  alternates: { canonical: 'https://metallurgspb.ru/about' },
   openGraph: {
-    title: 'О компании РусМет',
+    title: 'О компании Металлург',
     description: 'Поставщик металлопроката в СПб и ЛО с 2012 года. 500+ товарных позиций.',
   },
 };
@@ -31,13 +32,28 @@ const team = [
 ];
 
 export default function AboutPage() {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Главная', item: 'https://metallurgspb.ru' },
+      { '@type': 'ListItem', position: 2, name: 'О компании', item: 'https://metallurgspb.ru/about' },
+    ],
+  };
+
   return (
     <div className="bg-[#f5f5f5] py-16 sm:py-24">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="max-w-7xl mx-auto px-4">
+        <nav className="text-sm text-gray-400 mb-6 flex items-center gap-2">
+          <Link href="/" className="hover:text-[#CC0000] transition-colors">Главная</Link>
+          <span>/</span>
+          <span className="text-[#1a1a1a]">О компании</span>
+        </nav>
         <div className="mb-10">
           <h1 className="text-3xl sm:text-4xl font-black text-[#1a1a1a] mb-3">О компании</h1>
           <p className="text-gray-600 max-w-3xl leading-relaxed">
-            РусМет — поставщик металлопроката для строительных, производственных и торговых компаний Санкт-Петербурга и Ленинградской области.
+            Металлург — поставщик металлопроката для строительных, производственных и торговых компаний Санкт-Петербурга и Ленинградской области.
             Мы работаем с прозрачными условиями, держим постоянный складской запас и сопровождаем заказ от заявки до отгрузки.
           </p>
         </div>

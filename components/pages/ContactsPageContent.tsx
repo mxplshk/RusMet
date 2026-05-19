@@ -6,7 +6,7 @@ import type { City } from '@/lib/cities';
 import { sendLead } from '@/lib/sendLead';
 
 const requisites = [
-  ['Полное наименование', 'ООО «РусМет»'],
+  ['Полное наименование', 'ООО «Металлург»'],
   ['ИНН', '7800000000'],
   ['КПП', '780001001'],
   ['ОГРН', '1027800000000'],
@@ -61,8 +61,8 @@ export default function ContactsPageContent({ city, cityPrefix = '' }: Props) {
             </div>
             <div>
               <div className="text-xs text-gray-400 uppercase tracking-wide mb-1">Email</div>
-              <a href="mailto:info@rusmet.ru" className="text-xl font-bold text-[#1a1a1a] hover:text-[#CC0000] transition-colors">
-                info@rusmet.ru
+              <a href="mailto:info@metallurgspb.ru" className="text-xl font-bold text-[#1a1a1a] hover:text-[#CC0000] transition-colors">
+                info@metallurgspb.ru
               </a>
               <div className="text-sm text-gray-500 mt-1">Ответ в течение часа</div>
             </div>
@@ -86,14 +86,15 @@ export default function ContactsPageContent({ city, cityPrefix = '' }: Props) {
         </div>
 
         {/* Map */}
-        <div className="bg-white rounded-2xl h-80 flex items-center justify-center mb-10 border border-gray-100">
-          <div className="text-center text-gray-400">
-            <svg className="w-12 h-12 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-            </svg>
-            <p className="font-semibold">Карта</p>
-            <p className="text-sm">{city.address}</p>
-          </div>
+        <div className="bg-white rounded-2xl h-80 overflow-hidden mb-10 border border-gray-100">
+          <iframe
+            src={`https://yandex.ru/map-widget/v1/?text=${encodeURIComponent(city.address)}&z=15`}
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            loading="lazy"
+            title={`Карта — ${city.address}`}
+          />
         </div>
 
         {/* Requisites */}

@@ -4,7 +4,7 @@ import { products } from '@/data/products';
 import CategoryCard from '@/components/CategoryCard';
 import type { City } from '@/lib/cities';
 
-const BASE_URL = 'https://rusmet.ru';
+const BASE_URL = 'https://metallurgspb.ru';
 
 interface Props {
   city: City;
@@ -57,6 +57,7 @@ export default function CatalogPageContent({ city, cityPrefix = '' }: Props) {
                   category={category}
                   productCount={productCounts[category.slug] ?? 0}
                   cityPrefix={cityPrefix}
+                  cityName={city.name}
                 />
               ))}
             </div>

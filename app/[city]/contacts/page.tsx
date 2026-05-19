@@ -9,17 +9,30 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const city = getCityBySlug(params.city)!;
   return {
-    title: `Контакты РусМет ${city.in} — адрес, телефон, email`,
-    description: `Контактные данные РусМет ${city.in}. Адрес склада, телефон, email. Металлопрокат оптом и в розницу.`,
-    alternates: { canonical: `https://rusmet.ru/${params.city}/contacts` },
+    title: `Контакты Металлург ${city.in} — адрес, телефон, email`,
+    description: `Контактные данные Металлург ${city.in}. Адрес склада, телефон, email. Металлопрокат оптом и в розницу.`,
+    alternates: { canonical: `https://metallurgspb.ru/${params.city}/contacts` },
     openGraph: {
-      title: `Контакты РусМет ${city.in}`,
-      description: `Адрес, телефон и email РусМет ${city.in}.`,
+      title: `Контакты Металлург ${city.in}`,
+      description: `Адрес, телефон и email Металлург ${city.in}.`,
     },
   };
 }
 
 export default function CityContactsPage({ params }: Props) {
   const city = getCityBySlug(params.city)!;
-  return <ContactsPageContent city={city} cityPrefix={`/${params.city}`} />;
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Главная', item: `https://metallurgspb.ru/${params.city}` },
+      { '@type': 'ListItem', position: 2, name: 'Контакты', item: `https://metallurgspb.ru/${params.city}/contacts` },
+    ],
+  };
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <ContactsPageContent city={city} cityPrefix={`/${params.city}`} />
+    </>
+  );
 }

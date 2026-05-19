@@ -10,11 +10,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = getProductBySlug(params.slug);
   if (!product) return {};
   return {
-    title: `${product.name} — цена в Санкт-Петербурге | Русмет`,
+    title: `${product.name} — цена в Санкт-Петербурге | Металлург`,
     description: `Купить ${product.name} в Санкт-Петербурге. Характеристики, цена, доставка по России.`,
-    alternates: { canonical: `https://rusmet.ru/product/${params.slug}` },
+    alternates: { canonical: `https://metallurgspb.ru/product/${params.slug}` },
     openGraph: {
-      title: `${product.name} — Русмет`,
+      title: `${product.name} — Металлург`,
       description: `Купить ${product.name} в Санкт-Петербурге. Цена ${product.price.toLocaleString('ru-RU')} ₽ / ${product.unit}.`,
     },
   };

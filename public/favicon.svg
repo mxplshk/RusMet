@@ -1,0 +1,33 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1024" height="1024" rx="220" fill="white"/>
+
+  <path d="
+    M180 220
+    L512 470
+    L844 220
+    V760
+    L700 650
+    V450
+    L512 600
+    L324 450
+    V650
+    L180 760
+    Z
+  " fill="#FF002E"/>
+
+  <path d="
+    M300 520
+    L455 640
+    V820
+    H230
+    Z
+  " fill="#1E2530"/>
+
+  <path d="
+    M724 520
+    L569 640
+    V820
+    H794
+    Z
+  " fill="#1E2530"/>
+</svg>

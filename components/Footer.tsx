@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { categoryGroups } from '@/data/categories';
-import { cities } from '@/lib/cities';
+import { cities, getCityBySlug, defaultCity } from '@/lib/cities';
 import { sendLead } from '@/lib/sendLead';
 
 const mainCities = cities.filter(c => ['vsevolozhsk','gatchina','vyborg','sosnovy-bor','kolpino','pushkin','pavlovsk','kronshtadt'].includes(c.slug));
@@ -12,6 +13,9 @@ const secondCities = cities.filter(c => ['kingisepp','tosno','kirovsk','volhov',
 
 export default function Footer() {
   const [subscribed, setSubscribed] = useState(false);
+  const pathname = usePathname();
+  const citySlug = pathname.split('/')[1];
+  const currentCity = getCityBySlug(citySlug) ?? defaultCity;
 
   return (
     <footer className="bg-[#1a1a1a] text-white">
@@ -22,14 +26,14 @@ export default function Footer() {
             {/* Лого + контакты */}
             <div className="flex-1 order-2 lg:order-1">
               <Link href="/" className="inline-flex mb-4">
-                <Image src="/images/logo/main_logo.png" alt="РусМет" width={140} height={42} className="h-10 w-auto object-contain brightness-0 invert" />
+                <Image src="/images/logo/main_logo.png" alt="Металлург" width={140} height={42} className="h-10 w-auto object-contain brightness-0 invert" />
               </Link>
               <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
                 Металлопрокат с&nbsp;доставкой по&nbsp;Санкт-Петербургу и&nbsp;Ленинградской области
               </p>
               <div className="flex flex-col gap-2 text-sm mt-4">
-                <a href="tel:+78121234567" className="text-white hover:text-red-400 font-semibold transition-colors">+7&nbsp;(812)&nbsp;123-45-67</a>
-                <a href="mailto:info@rusmet.ru" className="text-gray-400 hover:text-white transition-colors">info@rusmet.ru</a>
+                <a href={`tel:${currentCity.phone}`} className="text-white hover:text-red-400 font-semibold transition-colors">{currentCity.phoneFormatted}</a>
+                <a href="mailto:info@metallurgspb.ru" className="text-gray-400 hover:text-white transition-colors">info@metallurgspb.ru</a>
                 <span className="text-gray-500 text-xs">Пн–Пт: 9:00–18:00</span>
               </div>
             </div>
@@ -101,7 +105,7 @@ export default function Footer() {
             Металлопрокат в&nbsp;Санкт-Петербурге и&nbsp;Ленинградской области оптом и&nbsp;в&nbsp;розницу&nbsp;&mdash; арматура, трубы, листовой прокат, швеллер, уголок, балка. Доставка по&nbsp;СПб, ЛО и&nbsp;всей России. Самовывоз со&nbsp;склада бесплатно.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-sm text-gray-500">
-            <span>РусМет&nbsp;&mdash; все права защищены</span>
+            <span>Металлург&nbsp;&mdash; все права защищены</span>
             <span>Металлопрокат оптом и&nbsp;в&nbsp;розницу</span>
           </div>
         </div>

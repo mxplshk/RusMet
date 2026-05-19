@@ -8,10 +8,10 @@ import FloatingPopup from '@/components/FloatingPopup';
 import CityDetector from '@/components/CityDetector';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rusmet.ru'),
+  metadataBase: new URL('https://metallurgspb.ru'),
   title: {
-    default: 'Русмет — металлопрокат оптом и в розницу',
-    template: '%s | Русмет',
+    default: 'Металлург — металлопрокат оптом и в розницу',
+    template: '%s | Металлург',
   },
   description: 'Продажа металлопроката в Санкт-Петербурге и Ленинградской области. Арматура, трубы, листовой прокат, швеллер, уголок.',
   keywords: ['металлопрокат', 'арматура', 'трубы', 'швеллер', 'уголок', 'листовой прокат', 'купить металл', 'Санкт-Петербург'],
@@ -29,18 +29,19 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
-    siteName: 'Русмет',
-    images: [{ url: '/images/logo/main_logo.png', width: 400, height: 120, alt: 'Русмет — металлопрокат' }],
+    siteName: 'Металлург',
+    images: [{ url: '/images/logo/main_logo.png', width: 400, height: 120, alt: 'Металлург — металлопрокат' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Русмет — металлопрокат оптом и в розницу',
+    title: 'Металлург — металлопрокат оптом и в розницу',
     description: 'Продажа металлопроката в Санкт-Петербурге и ЛО.',
     images: ['/images/logo/main_logo.png'],
   },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
       { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
       { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],
@@ -48,29 +49,26 @@ export const metadata: Metadata = {
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
+  manifest: '/manifest.json',
   alternates: {
-    canonical: 'https://rusmet.ru',
-  },
-  other: {
-    'yandex-verification': '',  // TODO: добавить код верификации Yandex Webmaster
+    canonical: 'https://metallurgspb.ru',
   },
 };
 
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Русмет',
-  url: 'https://rusmet.ru',
+  name: 'Металлург',
+  url: 'https://metallurgspb.ru',
   description: 'Продажа металлопроката в Санкт-Петербурге и Ленинградской области',
   publisher: {
     '@type': 'Organization',
-    name: 'Русмет',
-    url: 'https://rusmet.ru',
-  },
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: 'https://rusmet.ru/catalog?q={search_term_string}',
-    'query-input': 'required name=search_term_string',
+    name: 'Металлург',
+    url: 'https://metallurgspb.ru',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://metallurgspb.ru/images/logo/main_logo.png',
+    },
   },
 };
 

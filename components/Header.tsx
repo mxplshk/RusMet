@@ -116,7 +116,7 @@ export default function Header() {
           <div className="flex items-center gap-3 flex-shrink-0">
             <Link href={cityPrefix ? `${cityPrefix}/` : '/'}>
               <Image
-                src="/images/logo/main_logo.png"
+                src="/images/logo/main_logo.svg"
                 alt="Металлург"
                 width={160}
                 height={48}

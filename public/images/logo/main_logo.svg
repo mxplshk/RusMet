@@ -1,0 +1,55 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="330" viewBox="0 0 1280 330">
+  <defs>
+    <linearGradient id="redGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff1a3d"/>
+      <stop offset="100%" stop-color="#d80027"/>
+    </linearGradient>
+
+    <linearGradient id="darkGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2b3440"/>
+      <stop offset="100%" stop-color="#11161d"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Logo Mark -->
+  <path d="
+    M20 20
+    L188 145
+    L356 20
+    V290
+    L290 240
+    V135
+    L188 215
+    L86 135
+    V240
+    L20 290
+    Z
+  " fill="url(#redGrad)"/>
+
+  <path d="
+    M105 185
+    L170 235
+    V290
+    H55
+    Z
+  " fill="url(#darkGrad)"/>
+
+  <path d="
+    M271 185
+    L206 235
+    V290
+    H321
+    Z
+  " fill="url(#darkGrad)"/>
+
+  <!-- Text -->
+  <text x="420" y="210"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="115"
+        font-weight="700"
+        fill="#141922"
+        letter-spacing="2">
+    МЕТАЛЛУРГ
+  </text>
+</svg>

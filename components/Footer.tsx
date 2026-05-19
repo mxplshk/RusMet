@@ -26,7 +26,7 @@ export default function Footer() {
             {/* Лого + контакты */}
             <div className="flex-1 order-2 lg:order-1">
               <Link href="/" className="inline-flex mb-4">
-                <Image src="/images/logo/main_logo.png" alt="Металлург" width={140} height={42} className="h-10 w-auto object-contain brightness-0 invert" />
+                <Image src="/images/logo/main_logo.svg" alt="Металлург" width={140} height={42} className="h-10 w-auto object-contain brightness-0 invert" />
               </Link>
               <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
                 Металлопрокат с&nbsp;доставкой по&nbsp;Санкт-Петербургу и&nbsp;Ленинградской области

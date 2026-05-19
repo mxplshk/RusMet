@@ -1,54 +1,50 @@
 
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="330" viewBox="0 0 1280 330">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="420" viewBox="0 0 1400 420">
   <defs>
     <linearGradient id="redGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#ff1a3d"/>
-      <stop offset="100%" stop-color="#d80027"/>
+      <stop offset="0%" stop-color="#ff1f3d"/>
+      <stop offset="100%" stop-color="#df0028"/>
     </linearGradient>
 
-    <linearGradient id="darkGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#2b3440"/>
-      <stop offset="100%" stop-color="#11161d"/>
+    <linearGradient id="grayGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#404854"/>
+      <stop offset="100%" stop-color="#1e2530"/>
     </linearGradient>
   </defs>
 
-  <!-- Logo Mark -->
-  <path d="
-    M20 20
-    L188 145
-    L356 20
-    V290
-    L290 240
-    V135
-    L188 215
-    L86 135
-    V240
-    L20 290
-    Z
-  " fill="url(#redGrad)"/>
+  <!-- Icon -->
+  <g transform="translate(40,40)">
+    <path d="
+      M60 20
+      L240 170
+      L420 20
+      V320
+      L340 255
+      V170
+      L240 250
+      L140 170
+      V255
+      L60 320
+      Z
+    " fill="url(#redGrad)"/>
 
-  <path d="
-    M105 185
-    L170 235
-    V290
-    H55
-    Z
-  " fill="url(#darkGrad)"/>
-
-  <path d="
-    M271 185
-    L206 235
-    V290
-    H321
-    Z
-  " fill="url(#darkGrad)"/>
+    <path d="
+      M180 210
+      L240 260
+      L300 210
+      V285
+      L240 335
+      L180 285
+      Z
+    " fill="url(#grayGrad)"/>
+  </g>
 
   <!-- Text -->
-  <text x="420" y="210"
+  <text x="520" y="245"
         font-family="Arial, Helvetica, sans-serif"
-        font-size="115"
+        font-size="120"
         font-weight="700"
-        fill="#141922"
+        fill="#1f2630"
         letter-spacing="2">
     МЕТАЛЛУРГ
   </text>

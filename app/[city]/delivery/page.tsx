@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getCityBySlug } from '@/lib/cities';
+import { getCityBySlug, getCityDeliveryContent } from '@/lib/cities';
 import DeliveryCalculator from '@/components/DeliveryCalculator';
 
 interface Props {
@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default function CityDeliveryPage({ params }: Props) {
   const city = getCityBySlug(params.city)!;
+  const content = getCityDeliveryContent(city);
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -33,10 +34,10 @@ export default function CityDeliveryPage({ params }: Props) {
   };
 
   const zones = [
-    { zone: `${city.name}`, term: city.deliveryTime, details: 'Доставка собственным транспортом со склада в Санкт-Петербурге.' },
-    { zone: `${city.name} и окрестности (до 30 км)`, term: '1–2 рабочих дня', details: 'Стоимость рассчитывается по километражу от склада.' },
+    { zone: city.name, term: city.deliveryTime, details: 'Доставка собственным транспортом со\u00a0склада в\u00a0Санкт-Петербурге.' },
+    { zone: `${city.name} и\u00a0окрестности (до\u00a030\u00a0км)`, term: '1–2 рабочих дня', details: 'Стоимость рассчитывается по\u00a0километражу от\u00a0склада.' },
     { zone: 'Ленинградская область', term: '1–3 рабочих дня', details: 'Согласование времени разгрузки заранее.' },
-    { zone: 'Регионы РФ', term: 'от 2 дней', details: 'Отправка через проверенные транспортные компании.' },
+    { zone: 'Регионы РФ', term: 'от\u00a02\u00a0дней', details: 'Отправка через проверенные транспортные компании.' },
   ];
 
   return (
@@ -50,24 +51,20 @@ export default function CityDeliveryPage({ params }: Props) {
         </nav>
         <div className="mb-10">
           <h1 className="text-3xl sm:text-4xl font-black text-[#1a1a1a] mb-3">Доставка металлопроката {city.in}</h1>
-          <p className="text-gray-600 max-w-3xl leading-relaxed">
-            Организуем быструю и безопасную доставку металлопроката {city.by} и Ленинградской области.
-            Отгружаем со склада в Санкт-Петербурге ежедневно. Срок доставки {city.in} — {city.deliveryTime}.
-          </p>
+          <p className="text-gray-600 max-w-3xl leading-relaxed">{content.intro}</p>
         </div>
 
         <section className="bg-white rounded-2xl p-6 sm:p-8 mb-8 shadow-sm border border-gray-100">
           <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a] mb-5">Условия доставки {city.in}</h2>
           <ul className="space-y-3 text-gray-700">
-            <li>• Минимальный объём заказа для доставки — от 1 позиции.</li>
-            <li>• Доставка {city.by} — {city.deliveryTime} при подтверждении заказа до 12:00.</li>
-            <li>• Разгрузка на объекте согласуется заранее (кран, манипулятор, бригада).</li>
-            <li>• Для постоянных клиентов {city.in} доступны персональные тарифы на логистику.</li>
+            {content.conditions.map((c, i) => (
+              <li key={i}>• {c}</li>
+            ))}
           </ul>
         </section>
 
         <section className="bg-white rounded-2xl p-6 sm:p-8 mb-8 shadow-sm border border-gray-100">
-          <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a] mb-5">Зоны и сроки доставки</h2>
+          <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a] mb-5">Зоны и\u00a0сроки доставки</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {zones.map((item) => (
               <article key={item.zone} className="border border-gray-100 rounded-xl p-5 bg-[#fafafa]">
@@ -83,10 +80,7 @@ export default function CityDeliveryPage({ params }: Props) {
 
         <section className="bg-[#1a1a1a] text-white rounded-2xl p-6 sm:p-8">
           <h2 className="text-2xl sm:text-3xl font-black mb-3">Самовывоз</h2>
-          <p className="text-gray-300 leading-relaxed mb-3">
-            Самовывоз доступен бесплатно со склада в Санкт-Петербурге в рабочие дни с 9:00 до 18:00.
-            Клиенты из {city.nameRod} могут забрать заказ самостоятельно — подготовим документы и товар к приезду.
-          </p>
+          <p className="text-gray-300 leading-relaxed mb-3">{content.selfPickupNote}</p>
           <p className="text-sm text-gray-400 mb-5">Адрес склада: {city.address}</p>
           <a
             href={city.mapLink}
@@ -98,7 +92,7 @@ export default function CityDeliveryPage({ params }: Props) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
-            Найти на карте
+            Найти на\u00a0карте
           </a>
         </section>
       </div>

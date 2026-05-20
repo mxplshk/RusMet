@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getCityBySlug } from '@/lib/cities';
+import { getCityBySlug, getCityAboutContent } from '@/lib/cities';
 
 interface Props {
   params: { city: string };
@@ -20,27 +20,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const milestones = [
-  { year: '2012', text: 'Основание компании и первые прямые контракты с металлургическими комбинатами.' },
-  { year: '2017', text: 'Запуск собственного складского комплекса в Санкт-Петербурге и расширение ассортимента до 300+ позиций.' },
-  { year: '2021', text: 'Рост логистической сети и регулярные поставки в более чем 40 регионов РФ.' },
-  { year: '2024', text: 'Цифровизация продаж и автоматизация обработки заказов для B2B-клиентов.' },
+  { year: '2012', text: 'Основание компании и\u00a0первые прямые контракты с\u00a0металлургическими комбинатами.' },
+  { year: '2017', text: 'Запуск собственного складского комплекса в\u00a0Санкт-Петербурге и\u00a0расширение ассортимента до\u00a0300+ позиций.' },
+  { year: '2021', text: 'Рост логистической сети и\u00a0регулярные поставки в\u00a0более чем 40\u00a0регионов РФ.' },
+  { year: '2024', text: 'Цифровизация продаж и\u00a0автоматизация обработки заказов для\u00a0B2B-клиентов.' },
 ];
 
 const metrics = [
-  { value: '12+', label: 'лет на рынке' },
-  { value: '15 000 т', label: 'металла на складе' },
+  { value: '12+', label: 'лет на\u00a0рынке' },
+  { value: '15\u00a0000\u00a0т', label: 'металла на\u00a0складе' },
   { value: '500+', label: 'товарных позиций' },
   { value: '40+', label: 'регионов поставок' },
 ];
 
 const team = [
-  { role: 'Отдел продаж', desc: 'Консультирует по ассортименту, срокам и коммерческим условиям.' },
-  { role: 'Логистика', desc: 'Планирует маршруты и контролирует своевременную отгрузку.' },
-  { role: 'Склад и контроль качества', desc: 'Отвечает за комплектацию и проверку соответствия заказа.' },
+  { role: 'Отдел продаж', desc: 'Консультирует по\u00a0ассортименту, срокам и\u00a0коммерческим условиям.' },
+  { role: 'Логистика', desc: 'Планирует маршруты и\u00a0контролирует своевременную отгрузку.' },
+  { role: 'Склад и\u00a0контроль качества', desc: 'Отвечает за\u00a0комплектацию и\u00a0проверку соответствия заказа.' },
 ];
 
 export default function CityAboutPage({ params }: Props) {
   const city = getCityBySlug(params.city)!;
+  const content = getCityAboutContent(city);
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -62,10 +63,7 @@ export default function CityAboutPage({ params }: Props) {
         </nav>
         <div className="mb-10">
           <h1 className="text-3xl sm:text-4xl font-black text-[#1a1a1a] mb-3">О компании Металлург — {city.name}</h1>
-          <p className="text-gray-600 max-w-3xl leading-relaxed">
-            Металлург — поставщик металлопроката для строительных, производственных и торговых компаний {city.nameRod} и Ленинградской области.
-            Доставляем {city.by} — {city.deliveryTime}. Работаем с прозрачными условиями, держим постоянный складской запас.
-          </p>
+          <p className="text-gray-600 max-w-3xl leading-relaxed">{content.intro}</p>
         </div>
 
         <section className="bg-white rounded-2xl p-6 sm:p-8 mb-8 shadow-sm border border-gray-100">
@@ -94,11 +92,7 @@ export default function CityAboutPage({ params }: Props) {
 
         <section className="bg-white rounded-2xl p-6 sm:p-8 mb-8 shadow-sm border border-gray-100">
           <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a] mb-5">Доставка {city.in}</h2>
-          <p className="text-gray-600 leading-relaxed">
-            Металлопрокат {city.in} доступен с доставкой со склада в Санкт-Петербурге. Срок — {city.deliveryTime}.
-            Для клиентов из {city.nameRod} работает самовывоз и услуга доставки собственным транспортом.
-            {city.distanceNote ? ` ${city.name} — ${city.distanceNote}.` : ''}
-          </p>
+          <p className="text-gray-600 leading-relaxed">{content.deliveryNote}</p>
         </section>
 
         <section className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100">
